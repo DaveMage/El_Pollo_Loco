@@ -8,8 +8,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-26.png',
     ];
     world;
-    
-
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -20,16 +18,16 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
                 this.x += this.speed + 3;
                 this.otherDirection = false;
             }
 
-            if (this.world.keyboard.LEFT) {
+            if (this.world.keyboard.LEFT && this.x > -599) {
                 this.x -= this.speed + 3;
                 this.otherDirection = true;
             }
-            this.world.camera_x = 0 -this.x;
+            this.world.camera_x = 0 -this.x + 100;
         }, 1000/ 60);
 
         setInterval(() => {
