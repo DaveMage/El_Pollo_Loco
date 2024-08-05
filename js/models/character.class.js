@@ -1,4 +1,7 @@
 class Character extends MovableObject {
+    y = 80;
+    speed = 3;
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -7,56 +10,78 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png',
     ];
+
+    IMAGES_JUMPING = [
+        'img/2_character_pepe/3_jump/J-31.png',
+        'img/2_character_pepe/3_jump/J-32.png',
+        'img/2_character_pepe/3_jump/J-33.png',
+        'img/2_character_pepe/3_jump/J-34.png',
+        'img/2_character_pepe/3_jump/J-35.png',
+        'img/2_character_pepe/3_jump/J-36.png',
+        'img/2_character_pepe/3_jump/J-37.png',
+        'img/2_character_pepe/3_jump/J-38.png',
+        'img/2_character_pepe/3_jump/J-39.png',
+    ];
     world;
+
     walking_sound = new Audio('audio/walk.mp3');
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_WALKING);
-
+        this.loadImages(this.IMAGES_JUMPING);
+        this.applyGravity();
         this.animate();
     }
 
-    
+
+
     animate() {
 
         setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
-                this.x += this.speed + 3;
-                this.otherDirection = false;
+                this.moveRight();
                 this.walking_sound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > -599) {
-                this.x -= this.speed + 3;
-                this.otherDirection = true;
+                this.moveLeft();
                 this.walking_sound.play();
             }
-            this.world.camera_x = 0 -this.x + 100;
-        }, 1000/ 60);
+
+            console.log('this.speedY', this.speedY)
+
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.jump();
+            }
+
+            this.world.camera_x = 0 - this.x + 100;
+        }, 1000 / 60);
 
         setInterval(() => {
 
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                // walk animation
-                let i = this.currentImage % this.IMAGES_WALKING.length;  // let i = 0 % 6 - 
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+            } else {
+
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    // walk animation
+                    this.playAnimation(this.IMAGES_WALKING);
+                }
             }
         }, 100);
 
     }
 
     jump() {
-
+        this.speedY = 20;
     }
 
 }
 
 
 // let i = this.currentImage % this.IMAGES_WALKING.length;   Modulu besagt  let i = 0 % 6
-// wenn i = 1 dann 1 % 6 . simpel reicht die 1 nicht um die 6 zu füllen mann bekommt den rest dann noch als zahl dabei. 
+// wenn i = 1 dann 1 % 6 . simpel reicht die 1 nicht um die 6 zu füllen mann bekommt den rest dann noch als zahl dabei.
 // 1 % 6 = 0, rest 1
 // 2 % 6 = 0, rest 2
 // etc.
