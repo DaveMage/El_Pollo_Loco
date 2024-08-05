@@ -30,6 +30,20 @@ class MovableObject {
         this.img.src = path;
     }
 
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
@@ -47,15 +61,31 @@ class MovableObject {
 
     moveRight() {
         this.x += this.speed;
-        this.otherDirection = false;
     }
 
     moveLeft() {
-            this.x -= this.speed;
-            this.otherDirection = true;
+        this.x -= this.speed;
     }
 
     jump() {
-        this.speedY = 20; 
+        this.speedY = 20;
     }
+
+//     // Bessere Formel zur Kollisionsberechnung (Genauer)
+//     isColliding(obj) {
+//         return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
+//             (this.Y + this.offsetY + this.height) >= obj.Y &&
+//             (this.Y + this.offsetY) <= (obj.Y + obj.height) &&
+//             obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+
+//     }
+
+
+    isColliding(movableObject) {
+        return this.x + this.width > movableObject.x &&
+            this.y + this.height > movableObject.y &&
+            this.x < movableObject.x &&
+            this.y < movableObject.y + movableObject.height;
+        }
+
 }
