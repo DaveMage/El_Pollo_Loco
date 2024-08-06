@@ -1,15 +1,11 @@
-class MovableObject {
-    x = 120;
-    y = 270;
-    img;
-    height = 150;
-    width = 100;
-    imageCache = {};
-    currentImage = 0;
+class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 1;
+    energy = 100;
+    lastHit = 0;
+
 
     applyGravity() {
         setInterval(() => {
@@ -24,36 +20,10 @@ class MovableObject {
         return this.y < 270
     }
 
-    // loadImage('img/test.png');  -  this.img.src = path;
-    loadImage(path) {
-        this.img = new Image();  // ist das selbs wie - this.img = document.getElementById('image')     <img id="image">
-        this.img.src = path;
-    }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
 
     playAnimation(images) {
-        let i = this.currentImage % this.IMAGES_WALKING.length;  // let i = 0 % 6 - 
+        let i = this.currentImage % images.length;  // let i = 0 % 6 - 
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
@@ -71,6 +41,59 @@ class MovableObject {
         this.speedY = 20;
     }
 
+    isColliding(movableObject) {
+        return this.x + this.width > movableObject.x &&
+            this.y + this.height > movableObject.y &&
+            this.x < movableObject.x &&
+            this.y < movableObject.y + movableObject.height;
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isDead() {
+        return this.energy == 0
+    }
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; //difference in ms
+        timepassed = timepassed / 1000; // difference in sec
+        return timepassed < 5;
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //     // Bessere Formel zur Kollisionsberechnung (Genauer)
 //     isColliding(obj) {
 //         return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
@@ -79,13 +102,3 @@ class MovableObject {
 //             obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
 
 //     }
-
-
-    isColliding(movableObject) {
-        return this.x + this.width > movableObject.x &&
-            this.y + this.height > movableObject.y &&
-            this.x < movableObject.x &&
-            this.y < movableObject.y + movableObject.height;
-        }
-
-}

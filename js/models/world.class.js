@@ -5,6 +5,10 @@ class World {
     ctx;
     keyboard;
     camera_x = -100;
+    statusBar = new StatusBar();
+    throwableObjects = [
+        new ThrowableObject(),
+    ];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -21,9 +25,11 @@ class World {
 
     checkCollisions() {
         setInterval(() => {
-            this.level.enemies.forEach( (enemy) => {
-                if(this.character.isColliding(enemy)) {
-                    console.log('Collision with Character', enemy)
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy)
+                    console.log('Collision with Character, energy', this.character.energy)
                 }
             });
         }, 200);
@@ -36,8 +42,16 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
+
+        this.ctx.translate(-this.camera_x, 0);  // back
+        // ------------- space for fix objects -----------------
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);   // forwards
+        
         this.addToMap(this.character);
+        this.addObjectsToMap(this.level.enemies);
+
 
         this.ctx.translate(-this.camera_x, 0);
         // draw wird immer wieder aufgerufen
