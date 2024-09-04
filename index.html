@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
-
-    <script src="/js/models/drawable-object.class.js"></script>    <!--   wenn eine class nicht definde ist, ist sie im script evtl zu spät aufgerufen   --> 
+    <script src="/js/models/drawable-object.class.js"></script>
+    <!--   wenn eine class nicht definde ist, ist sie im script evtl zu spät aufgerufen   -->
     <script src="/js/models/movable-object.class.js"></script>
     <script src="/js/models/cloud.class.js"></script>
     <script src="/js/models/character.class.js"></script>
@@ -21,16 +21,73 @@
     <script src="/js/models/endboss.class.js"></script>
     <script src="/js/levels/level1.js"></script>
     <script src="js/game.js"></script>
+
 </head>
 
 <body onload="init()">
-    
+    <!-- Headline -->
     <h1>El Pollo Loco</h1>
 
-    <canvas id="canvas" width="720" height="480">
+    <!-- Startbutton -->
+    <div id="startLayer" class="startScreen">
+        <button id="startButton" onclick="startGame()">Start</button>
+    </div>
+
+    <canvas id="canvas" width="720" height="480"> </canvas>
+
+    <!-- Lower Game Section -->
+    <div class="lowerGameSection">
+        <h2>Controls</h2>
+        <div class="lowerGameControlSection">
+            <span class="lowerGameControls">
+                <img src="/img/10_menu_buttons/move_left.png" alt="Icon" class="icon"> Left
+            </span>
+            <span class="lowerGameControls">
+                <img src="/img/10_menu_buttons/move_right.png" alt="Icon" class="icon"> Right
+            </span>
+            <span class="lowerGameControls">
+                <img src="/img/10_menu_buttons/jump.png" alt="Icon" class="icon"> Jump
+            </span>
+            <span class="lowerGameControls">
+                <span class="icon iconLetter">D</span> Throw
+            </span>
+        </div>
+        <div>
+            <button class="impBtn" onclick="openImpressum()">Impressum</button>
+        </div>
+    </div>
+
+    <!-- Impressum -->
+    <div id="impressum" class="dNone">
+        <button class="closeBtn" onclick="closeImpressum()">X</button>
+        <h3>Impressum</h3>
+        <div class="impressumInfo">
+            <h4>Adresse</h4>
+            <span>David Mages</span>
+            <span>Manningtree Str.6</span>
+            <span>35066 Frankenberg</span>
+        </div>
+        <div class="impressumInfo">
+            <h4>Kontakt</h4>
+            <span>Telefon: +49 1573 0945590</span>
+            <span>E-Mail: david.mages@yahoo.de</span>
+        </div>
+        <div class="impressumInfo">
+            <h4>Datenschutzerklärung</h4>
+            <span>Zur Datenschutzerklärung geht es hier</span>
+            <span>
+                <a href="/privacy-policy.html">
+                    <img class="linkBtn" src="/img/10_menu_buttons/link.png" alt="HIER">
+                </a>
+            </span>
+
+        </div>
+    </div>
 
 
-    </canvas>
+
+
+
 
 </body>
 

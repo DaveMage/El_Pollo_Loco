@@ -3,13 +3,12 @@ let world;
 let keyboard = new Keyboard();
 
 
+
+
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-
-
-    console.log('My Character is', world.character);  // man kann auch sagen world['character'];
 }
+
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -62,3 +61,32 @@ window.addEventListener("keyup", (event) => {
         keyboard.D = false;
     }
 })
+
+function startGame() {
+    let game = document.getElementById('startLayer');
+    game.classList.add("dNone");
+    let canvas = document.getElementById('canvas');
+    canvas.classList.add("dBlock");
+    initLevel();
+    world = new World(canvas, keyboard);
+}
+
+function closeImpressum() {
+    let impressum = document.getElementById('impressum');
+    impressum.classList.add('dNone');
+}
+
+function openImpressum() {
+    let impressum = document.getElementById('impressum');
+    impressum.classList.remove('dNone');
+}
+
+
+
+// const button = document.getElementById("startButton");
+// const hoverSound = document.getElementById("hoverSound");
+
+// button.addEventListener("mouseenter", () => {
+//     hoverSound.currentTime = 0; // Startet den Sound von Anfang an
+//     hoverSound.play();
+// });

@@ -1,6 +1,6 @@
 Aufgaben
 
-- Start Screen
+- Start Screen  -Done
 - Musik + Sounds
 - Coins einsammeln
 - Flaschen einsammeln
@@ -9,4 +9,4 @@ Aufgaben
 - Endgegner besiegen
 - Game-Over Screen
 - Fullscreen
-- Erklärung (welche Tasten)
+- Erklärung (welche Tasten) -Done
