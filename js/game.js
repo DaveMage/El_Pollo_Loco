@@ -63,7 +63,7 @@ window.addEventListener("keyup", (event) => {
 })
 
 function startGame() {
-    let game = document.getElementById('startLayer');
+    let game = document.getElementById('start');
     game.classList.add("dNone");
     let canvas = document.getElementById('canvas');
     canvas.classList.add("dBlock");
@@ -79,6 +79,10 @@ function closeImpressum() {
 function openImpressum() {
     let impressum = document.getElementById('impressum');
     impressum.classList.remove('dNone');
+}
+
+function reload() {
+    window.location.reload();
 }
 
 

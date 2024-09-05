@@ -12,17 +12,91 @@ body {
     background-size: cover;
 }
 
-.startScreen {
+.mainScreen {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     width: 720px;
     height: 480px;
-    background-image: url(/img/9_intro_outro_screens/start/startscreen_1.png);
+    position: relative;
+}
+
+.startScreenLayer {
+    width: 720px;
+    height: 480px;
+    position: relative;
+    display: block;
+}
+
+.startImage {
+    width: 720px;
+    height: 480px;
+    position: relative;
+}
+
+.startButton {
+    position: absolute;
+    z-index: 500;
+    top: 20px;
+    transform: translate(-50%);
+    cursor: pointer;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    background-color: rgb(255, 219, 5);
+    border-radius: 10px;
+    width: 160px;
+    height: 72px;
+    box-shadow: 6px 6px 5px -3px #000000;
+    left: 50% !important;
+}
+
+.startButton:hover {
+    background-color: rgb(246, 222, 38);
+}
+
+.menuBtnBar {
+    margin-left: 460px;
+    position: absolute;
+    z-index: 1;
+    top: 416px;
+}
+
+.menuBtn {
+    cursor: pointer;
+    height: 40px;
+    width: auto;
+    border-style: solid;
+    border-radius: 50%;
+    padding: 2px;
+    margin-left: 8px;
+    margin-bottom: 4px;
+}
+
+.menuBtn:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+/* .startScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 720px;
+    height: 480px;
     background-size: cover;
     background-position: 100%, 50%;
     background-repeat: no-repeat;
 }
+
 
 #startButton {
     cursor: pointer;
@@ -46,7 +120,7 @@ h1 {
     font-size: 64px;
     letter-spacing: 3px;
     text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
-}
+} */
 
 h2 {
     font-size: 48px;
@@ -131,6 +205,7 @@ h2 {
     padding-left: 24px;
     padding-right: 24px;
     border-radius: 25px;
+    z-index: 850;
 }
 
 .impressumInfo {
