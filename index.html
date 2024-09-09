@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
+    <audio id="mainAudio">
+        <source src="/audio/maintheme.mp3" type="audio/mp3">
+    </audio>
     <script src="/js/models/drawable-object.class.js"></script>
     <!--   wenn eine class nicht definde ist, ist sie im script evtl zu spät aufgerufen   -->
     <script src="/js/models/movable-object.class.js"></script>
@@ -22,6 +25,7 @@
     <script src="/js/levels/level1.js"></script>
     <script src="js/game.js"></script>
 
+
 </head>
 
 <body onload="init()">
@@ -29,19 +33,20 @@
     <h1>El Pollo Loco</h1>
 
     <!-- Zweit Versuch -->
-    <div class="mainScreen">
+    <div id="createFullScreen"  class="mainScreen">
         <div class="menuBtnBar">
             <span>
                 <img class="menuBtn" onclick="reload()" src="/img/10_menu_buttons/home.png" alt="icon">
             </span>
             <span>
-                <img class="menuBtn" src="/img/10_menu_buttons/sound_on.png" alt="icon">
+                <img id="gameSound" class="menuBtn" onclick="toggleSound()" src="/img/10_menu_buttons/sound_on.png"
+                    alt="icon">
             </span>
             <span>
                 <img class="menuBtn" onclick="startGame()" src="/img/10_menu_buttons/restart.png" alt="">
             </span>
             <span>
-                <img class="menuBtn" src="/img/10_menu_buttons/full_screen.png" alt="">
+                <img class="menuBtn" onclick="enterFullscreen()" src="/img/10_menu_buttons/full_screen.png" alt="">
             </span>
         </div>
         <!-- <div>mobile</div> -->

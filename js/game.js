@@ -1,6 +1,8 @@
 let canvas;
 let world; 
 let keyboard = new Keyboard();
+let mainTheme = document.getElementById('mainAudio');
+// let fullscreen = document.getElementById('fullscreen');
 
 
 
@@ -69,6 +71,7 @@ function startGame() {
     canvas.classList.add("dBlock");
     initLevel();
     world = new World(canvas, keyboard);
+    checkAudioStatus();
 }
 
 function closeImpressum() {
@@ -85,6 +88,63 @@ function reload() {
     window.location.reload();
 }
 
+function toggleSound() {
+    let img = document.getElementById('gameSound');
+    let startScreen = document.getElementById('start');
+
+    if (img.src.includes('/img/10_menu_buttons/sound_on.png')) {
+        img.src = '/img/10_menu_buttons/sound_off.png';
+        stopAudio();
+    } else {
+        img.src ='/img/10_menu_buttons/sound_on.png';
+        if (startScreen.classList.contains('dNone')) {
+            playAudio();
+        }
+    }
+}
+
+function checkAudioStatus() {
+    let audio = document.getElementById('gameSound');
+    if (audio.src.includes('/img/10_menu_buttons/sound_on.png')) {
+        playAudio();
+    }
+}
+
+function playAudio() {
+    mainTheme.play();
+}
+
+function stopAudio() {
+    mainTheme.pause();
+}
+
+
+
+
+function enterFullscreen() {
+    let element = document.getElementById("createFullScreen");
+
+    if(element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+      element.msRequestFullscreen();
+    } else if(element.webkitRequestFullscreen) {  // iOS Safari
+      element.webkitRequestFullscreen();
+    }
+  }
+  
+
+
+
+//   function exitFullscreen() {
+//     if(document.exitFullscreen) {
+//       document.exitFullscreen();
+//     } else if(document.webkitExitFullscreen) {
+//       document.webkitExitFullscreen();
+//     }
+//   }
+  
+//   exitFullscreen();
 
 
 // const button = document.getElementById("startButton");
