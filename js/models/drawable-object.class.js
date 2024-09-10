@@ -10,7 +10,7 @@ class DrawableObject {
     
     // loadImage('img/test.png');  -  this.img.src = path;
     loadImage(path) {
-        this.img = new Image();  // ist das selbs wie - this.img = document.getElementById('image')     <img id="image">
+        this.img = new Image();  // ist das selbe wie - this.img = document.getElementById('image')     <img id="image">
         this.img.src = path;
     }
     
@@ -27,7 +27,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';

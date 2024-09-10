@@ -8,5 +8,6 @@ Aufgaben
 - Collision
 - Endgegner besiegen
 - Game-Over Screen
-- Fullscreen
+- Fullscreen -erstmal auf eig gelegt
 - Erklärung (welche Tasten) -Done
+- responsiv passt nicht mehr

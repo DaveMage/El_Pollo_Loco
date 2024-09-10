@@ -66,7 +66,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // draw wird immer wieder aufgerufen
         let self = this;
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function () {     // in dieser function erkennt er das this. nicht mehr. deswegen wird es vorher mit let self definiert.
             self.draw();
         });
     }
