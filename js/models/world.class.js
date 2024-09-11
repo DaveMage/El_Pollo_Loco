@@ -6,6 +6,8 @@ class World {
     keyboard;
     camera_x = -100;
     statusBar = new StatusBar();
+    coin_statusbar = new CoinStatusBar();
+    bottle_statusbar = new BottleStatusBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -59,6 +61,8 @@ class World {
         this.ctx.translate(-this.camera_x, 0);  // back
         // ------------- space for fix objects -----------------
         this.addToMap(this.statusBar);
+        this.addToMap(this.coin_statusbar);
+        this.addToMap(this.bottle_statusbar);         
         this.ctx.translate(this.camera_x, 0);   // forwards
         
         this.addToMap(this.character);
