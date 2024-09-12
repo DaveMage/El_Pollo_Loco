@@ -27,7 +27,25 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkThrowObjects();
+            this.checkCoinCollision();
+            this.checkBottleCollision();
         }, 200);
+    }
+
+    checkBottleCollision() {
+        this.level.bottle.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                console.log('Collision with Character' , bottle);
+            }
+        })
+    }
+
+    checkCoinCollision() {
+        this.level.coins.forEach((coins) => {
+            if(this.character.isColliding(coins)){
+                console.log('Collision with Character ', coins);
+            }
+        });
     }
 
     checkThrowObjects() {
