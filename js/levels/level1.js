@@ -16,7 +16,11 @@ function initLevel() {
         new Cloud(),
     ],[
         new Coins(),
+        new Coins(),
+        new Coins(),
     ],[
+        new Bottle(),
+        new Bottle(),
         new Bottle(),
     ], [
         new BackgroundObject('img/5_background/layers/air.png', 0, 0),                      // air

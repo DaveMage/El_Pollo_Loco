@@ -9,11 +9,13 @@ class World {
     coin_statusbar = new CoinStatusBar();
     bottle_statusbar = new BottleStatusBar();
     throwableObjects = [];
+    collisionHandler;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.collisionHandler = new CollisionHandler(this);
         this.draw();
         this.setWorld();
         this.run();
@@ -24,29 +26,35 @@ class World {
     }
 
     run() {
+
         setInterval(() => {
-            this.checkCollision();
+            this.collisionHandler.checkCollisions();
             this.checkThrowObjects();
-            this.checkCoinCollision();
-            this.checkBottleCollision();
         }, 200);
+
+        // setInterval(() => {
+        //     this.checkCollision();
+        //     this.checkThrowObjects();
+        //     this.checkCoinCollision();
+        //     this.checkBottleCollision();
+        // }, 200);
     }
 
-    checkBottleCollision() {
-        this.level.bottle.forEach((bottle) => {
-            if (this.character.isColliding(bottle)) {
-                console.log('Collision with Character' , bottle);
-            }
-        })
-    }
+    // checkBottleCollision() {
+    //     this.level.bottle.forEach((bottle) => {
+    //         if (this.character.isColliding(bottle)) {
+    //             console.log('Collision with Character' , bottle);
+    //         }
+    //     })
+    // }
 
-    checkCoinCollision() {
-        this.level.coins.forEach((coins) => {
-            if(this.character.isColliding(coins)){
-                console.log('Collision with Character ', coins);
-            }
-        });
-    }
+    // checkCoinCollision() {
+    //     this.level.coins.forEach((coins) => {
+    //         if(this.character.isColliding(coins)){
+    //             console.log('Collision with Character ', coins);
+    //         }
+    //     });
+    // }
 
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -55,15 +63,41 @@ class World {
         }
     }
 
-    checkCollision() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy)
-                console.log('Collision with Character, energy', this.character.energy)
-            }
-        });
-    }
+    // checkCollision() {
+    //     this.updateCoins();
+    //     this.updateEnemies();
+    //     this.updateBottle();
+    // }
+
+    // updateBottle() {
+    //     this.level.bottle.forEach((bottle, index) => {
+    //         if (this.character.isColliding(bottle)) {
+    //             bottle.remove(); 
+    //             this.level.bottle.splice(index, 1); 
+    //             console.log('Collision with Character', bottle);
+    //         }
+    //     });
+    // }
+
+    // updateEnemies() {
+    //             this.level.enemies.forEach((enemy) => {
+    //         if (this.character.isColliding(enemy)) {
+    //             this.character.hit();
+    //             this.statusBar.setPercentage(this.character.energy)
+    //             console.log('Collision with Character, energy', this.character.energy)
+    //         }
+    //     });
+    // }
+
+    // updateCoins() {
+    //     this.level.coins.forEach((coin, index) => {
+    //         if (this.character.isColliding(coin)) {
+    //             coin.remove(); // Münze entfernen
+    //             this.level.coins.splice(index, 1); // Münze aus dem Array entfernen
+    //             console.log('Collision with Character', coin);
+    //         }
+    //     });
+    // }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

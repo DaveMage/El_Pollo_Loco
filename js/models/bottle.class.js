@@ -14,4 +14,8 @@ class Bottle extends MovableObject {
         this.loadImages(this.IMAGES_BOTTLE);
         this.x = 50 + Math.random() * 500;
     }
+
+    remove() {
+        this.x = -1000; // Flasche außerhalb des sichtbaren Bereichs verschieben
+    }
 }
