@@ -45,6 +45,4 @@ class CoinStatusBar extends DrawableObject {
             return 0;
         }
     }
-
-
 }

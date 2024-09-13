@@ -2,10 +2,10 @@ Aufgaben
 
 - Start Screen  -Done
 - Musik + Sounds
-- Coins einsammeln
-- Flaschen einsammeln
+- Coins einsammeln -Done
+- Flaschen einsammeln   -Done
 - Flaschen nur werfen, wenn sie vorhanden sind
-- Collision
+- Collision -Done
 - Endgegner besiegen
 - Game-Over Screen
 - Fullscreen -erstmal auf eig gelegt
