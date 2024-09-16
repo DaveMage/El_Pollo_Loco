@@ -22,10 +22,7 @@ class MovableObject extends DrawableObject {
         } else {
             return this.y < 270
         }
-
     }
-
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length;  // let i = 0 % 6 - 
@@ -53,15 +50,6 @@ class MovableObject extends DrawableObject {
             this.y < movableObject.y + movableObject.height;
     }
 
-    // isColliding(movableObject) {
-    //     return (this.X + this.width) >= movableObject.X && this.X <= (movableObject.X + movableObject.width) &&
-    //         (this.Y + this.offsetY + this.height) >= movableObject.Y &&
-    //         (this.Y + this.offsetY) <= (movableObject.Y + movableObject.height) &&
-    //         movableObject.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-
-    // }
-
-
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -80,17 +68,18 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000; // difference in sec
         return timepassed < 2;
     }
-
-
-
-
-
 }
 
 
 
 
+    // isColliding(movableObject) {
+    //     return (this.X + this.width) >= movableObject.X && this.X <= (movableObject.X + movableObject.width) &&
+    //         (this.Y + this.offsetY + this.height) >= movableObject.Y &&
+    //         (this.Y + this.offsetY) <= (movableObject.Y + movableObject.height) &&
+    //         movableObject.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
 
+    // }
 
 
 

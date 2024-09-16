@@ -14,8 +14,10 @@ class CollisionHandler {
         this.world.level.coins.forEach((coin, index) => {
             if (this.world.character.isColliding(coin)) {
                 coin.remove(); // Münze entfernen
-                this.world.level.coins.splice(index, 1); // Münze aus dem Array entfernen
+                this.world.level.coins.splice(index, 1); // Münze aus dem Array entfert
                 console.log('Collision with Character', coin);
+                this.world.coin_statusbar.setPercentage(this.world.coin_statusbar.percentage += 20);
+
             }
         });
     }
@@ -26,6 +28,8 @@ class CollisionHandler {
                 bottle.remove(); // Münze entfernen
                 this.world.level.bottle.splice(index, 1); // Münze aus dem Array entfernen
                 console.log('Collision with Character', bottle);
+                this.world.bottle_statusbar.setPercentage(this.world.bottle_statusbar.percentage += 20);
+
             }
         });
     }

@@ -25,6 +25,12 @@ class World {
         this.character.world = this;
     }
 
+    updateCoinStatusBar() {         // neu
+        let collectedCoins = this.level.totalCoins - this.level.coins.length;
+        let percentage = (collectedCoins / this.level.totalCoins) * 100;
+        this.coin_statusbar.setPercentage(percentage);
+    }
+
     run() {
         setInterval(() => {
             this.collisionHandler.checkCollisions();
@@ -33,10 +39,13 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
-            this.throwableObjects.push(bottle)
-        }
+       
+            if (this.keyboard.D && this.bottle_statusbar.percentage > 0) {
+                let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
+                this.throwableObjects.push(bottle);        
+                this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
+            }
+   
     }
 
     draw() {
@@ -53,7 +62,7 @@ class World {
         // ------------- space for fix objects -----------------
         this.addToMap(this.statusBar);
         this.addToMap(this.coin_statusbar);
-        this.addToMap(this.bottle_statusbar);         
+        this.addToMap(this.bottle_statusbar);
         this.ctx.translate(this.camera_x, 0);   // forwards       
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
