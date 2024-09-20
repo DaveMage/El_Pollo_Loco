@@ -68,6 +68,35 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000; // difference in sec
         return timepassed < 2;
     }
+
+
+
+    // killEnemy(enemy) {       //test
+    //     let index = this.world.level.enemies.indexOf(enemy);
+    //     this.enemyDies(enemy);
+
+    //     setTimeout(() => {
+    //         if (index > -1) {
+    //             this.world.level.enemies.splice(index, 1);
+    //         }
+    //     }, 400);
+    // }
+
+
+    // enemyDies(enemy) {   //test
+    //     enemy.isDead = true;
+    //     enemy.animate();
+    //     enemy.speed = 0;
+    //     if (enemy.type == 'Chicken') {
+    //         this.world.audioHandler.toggleSound(this.chicken_sound);
+    //         this.world.audioHandler.toggleVolume(this.chicken_sound, 0.2);
+    //     } else if (enemy.type == 'SmallChicken') {
+    //         this.world.audioHandler.toggleSound(this.small_chicken_sound);
+    //         this.world.audioHandler.toggleVolume(this.small_chicken_sound, 0.2);
+    //     }
+    // }
+
+
 }
 
 

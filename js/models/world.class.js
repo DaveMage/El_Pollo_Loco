@@ -64,8 +64,9 @@ class World {
         this.addToMap(this.coin_statusbar);
         this.addToMap(this.bottle_statusbar);
         this.ctx.translate(this.camera_x, 0);   // forwards       
-        this.addToMap(this.character);
+
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         // draw wird immer wieder aufgerufen
         let self = this;

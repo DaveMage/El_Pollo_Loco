@@ -4,10 +4,12 @@ class CollisionHandler {
     }
 
     checkCollisions() {
-        this.checkCoinCollision();
-        this.checkBottleCollision();
-        this.checkEnemyCollision();
-        // Weitere Kollisionsprüfungen hier hinzufügen
+        setInterval(() => {
+            this.checkCoinCollision();
+            this.checkBottleCollision();
+            this.checkEnemyCollision();
+            // Weitere Kollisionsprüfungen hier hinzufügen
+        }, 250);
     }
 
     checkCoinCollision() {
@@ -37,10 +39,31 @@ class CollisionHandler {
     checkEnemyCollision() {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy)) {
-                this.world.character.hit();
-                this.world.statusBar.setPercentage(this.world.character.energy);
-                console.log('Collision with Character, energy', this.world.character.energy);
+                if (this.isFalling() && this.world.character.isColliding(enemy) && this.world.character.speedY < 0 && !enemy.isDead) {
+                    this.world.character.speedY = 20;
+                    enemy.die(); // Huhn stirbt
+                } else if(!enemy.isDead) {
+                    console.log('doch getroffen')
+                    this.world.character.hit();
+                    this.world.statusBar.setPercentage(this.world.character.energy);
+                    console.log('Collision with Character, energy', this.world.character.energy);
+                    console.log(Boolean, this.isFalling())
+                }
             }
         });
     }
+
+    isFalling() {
+        return this.world.character.isAboveGround();
+    }
 }
+
+    // checkEnemyCollision() {      original
+    //     this.world.level.enemies.forEach((enemy) => {
+    //         if (this.world.character.isColliding(enemy)) {
+    //             this.world.character.hit();
+    //             this.world.statusBar.setPercentage(this.world.character.energy);
+    //             console.log('Collision with Character, energy', this.world.character.energy);
+    //         }
+    //     });
+    // }
