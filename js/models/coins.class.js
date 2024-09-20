@@ -4,6 +4,13 @@ class Coins extends MovableObject {
     height = 200;
     width = 200;
 
+    offset = {
+        top: 60,
+        bottom: 60,
+        left: 60,
+        right: 60,
+    };
+
     IMAGES_COIN = [
         'img/8_coin/coin_1.png',
         'img/8_coin/coin_2.png',
@@ -12,7 +19,7 @@ class Coins extends MovableObject {
     constructor() {
         super().loadImage('img/8_coin/coin_1.png')
         this.loadImages(this.IMAGES_COIN);
-        this.x = 400 + Math.random() * 500;
+        this.x = 300 + Math.random() * 0;
         this.animate();
     }
 

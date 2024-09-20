@@ -1,8 +1,15 @@
 class Character extends MovableObject {
-    y = 80;
+    y = 70;
     speed = 3;
     collectedCoins = 0;
     collectedBottle = 0;
+
+    offset = {
+        top: 50,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    };
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',

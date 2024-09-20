@@ -9,7 +9,7 @@ class CollisionHandler {
             this.checkBottleCollision();
             this.checkEnemyCollision();
             // Weitere Kollisionsprüfungen hier hinzufügen
-        }, 250);
+        }, 25);
     }
 
     checkCoinCollision() {

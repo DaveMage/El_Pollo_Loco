@@ -43,12 +43,27 @@ class MovableObject extends DrawableObject {
         this.speedY = 20;
     }
 
-    isColliding(movableObject) {
-        return this.x + this.width > movableObject.x &&
-            this.y + this.height > movableObject.y &&
-            this.x < movableObject.x &&
-            this.y < movableObject.y + movableObject.height;
+    // isColliding(movableObject) {
+    //     return this.x + this.width > movableObject.x &&
+    //         this.y + this.height > movableObject.y &&
+    //         this.x < movableObject.x &&
+    //         this.y < movableObject.y + movableObject.height;
+    // }
+
+    isColliding(movableObject) {    // mit offset
+        return this.x + this.width -this.offset.right > movableObject.x + movableObject.offset.left &&  // R -> L
+            this.y + this.height -this.offset.bottom > movableObject.y + movableObject.offset.top &&     // top -> bottom
+            this.x + this.offset.left < movableObject.x + movableObject.width -movableObject.offset.right && // L -> R
+            this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom; // bottom -> top
     }
+
+    // isColliding(obj) {       // tobi
+    //     return this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
+    //         this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
+    //         this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
+    //         this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom;
+    // }
+
 
     hit() {
         this.energy -= 5;
@@ -102,13 +117,13 @@ class MovableObject extends DrawableObject {
 
 
 
-    // isColliding(movableObject) {
-    //     return (this.X + this.width) >= movableObject.X && this.X <= (movableObject.X + movableObject.width) &&
-    //         (this.Y + this.offsetY + this.height) >= movableObject.Y &&
-    //         (this.Y + this.offsetY) <= (movableObject.Y + movableObject.height) &&
-    //         movableObject.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+// isColliding(movableObject) {
+//     return (this.X + this.width) >= movableObject.X && this.X <= (movableObject.X + movableObject.width) &&
+//         (this.Y + this.offsetY + this.height) >= movableObject.Y &&
+//         (this.Y + this.offsetY) <= (movableObject.Y + movableObject.height) &&
+//         movableObject.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
 
-    // }
+// }
 
 
 
