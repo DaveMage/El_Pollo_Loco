@@ -18,7 +18,7 @@ class BottleStatusBar extends DrawableObject {
         this.y = 100;
         this.width = 200;
         this.height = 50;
-        this.setPercentage(100); // geändert für bosskampf. normalerweise (0)
+        this.setPercentage(0); 
     }
 
     setPercentage(percentage) {

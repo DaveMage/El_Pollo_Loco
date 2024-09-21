@@ -8,8 +8,10 @@ class World {
     statusBar = new StatusBar();
     coin_statusbar = new CoinStatusBar();
     bottle_statusbar = new BottleStatusBar();
+    endboss_healthbar = new EndbossHealthBar();
     throwableObjects = [];
     collisionHandler;
+    canThrow = true;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -39,10 +41,18 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.bottle_statusbar.percentage > 0) {
+        if (!this.canThrow) return;
+
+        if (this.keyboard.D && this.bottle_statusbar.percentage > 0 && this.coin_statusbar.percentage > 0) {
             let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
             this.throwableObjects.push(bottle);
             this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
+            this.coin_statusbar.setPercentage(this.coin_statusbar.percentage -= 20);
+
+            this.canThrow = false;
+            setTimeout(() => {
+                this.canThrow = true;
+            }, 1000);
         }
     }
 
@@ -55,11 +65,14 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
+
         this.addObjectsToMap(this.level.enemies);
+
         this.addObjectsToMap(this.throwableObjects);    // geändert, war hinten bei character
 
         this.ctx.translate(-this.camera_x, 0);  // back
         // ------------- space for fix objects -----------------
+        this.addToMap(this.endboss_healthbar);
         this.addToMap(this.statusBar);
         this.addToMap(this.coin_statusbar);
         this.addToMap(this.bottle_statusbar);

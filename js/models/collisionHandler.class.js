@@ -70,7 +70,9 @@ class CollisionHandler {
                     let collisionX = bottle.x;
                     let collisionY = bottle.y;
                     bottle.bottleSplash(collisionX, collisionY);
-                    console.log('Getroffen!');
+                    enemy.energy -= 41;
+                    console.log('Getroffen, energy', enemy.energy);
+                    this.world.endboss_healthbar.setPercentage(enemy.energy);
                     
                     this.collisionDetected = true;
                     setTimeout(() => {
