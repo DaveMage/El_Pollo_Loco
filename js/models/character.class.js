@@ -90,8 +90,6 @@ class Character extends MovableObject {
         this.animate();
     }
 
-
-
     animate() {
 
         setInterval(() => {
@@ -107,16 +105,12 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.walking_sound.play();
             }
-
             console.log('this.speedY', this.speedY)
-
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
 
             this.world.camera_x = 0 - this.x + 100;
-
-            // this.startIdleAnimation()
         }, 1000 / 60);
 
         setInterval(() => {
@@ -135,36 +129,12 @@ class Character extends MovableObject {
                 }
             }
         }, 100);
-
     }
 
     jump() {
         this.speedY = 20;
     }
-
-    // startIdleAnimation() {
-    //     setInterval(() => {
-    //         if (
-    //             // !this.isMoving &&
-    //             !this.isHurt() &&
-    //             !this.isAboveGround()
-    //         ) {
-    //             if (this.longIdleActive) {
-    //                 this.playAnimation(this.IMAGES_IDLE_LONG);
-    //                 // this.world.audioHandler.toggleSound(this.snore_sound);
-    //                 // this.world.audioHandler.toggleVolume(this.snore_sound, 0.9);
-    //             } else {
-    //                 this.playAnimation(this.IMAGES_IDLE);
-    //             }
-    //         }
-    //     }, 200);
-    // }
 }
 
 
-// let i = this.currentImage % this.IMAGES_WALKING.length;   Modulu besagt  let i = 0 % 6
-// wenn i = 1 dann 1 % 6 . simpel reicht die 1 nicht um die 6 zu füllen mann bekommt den rest dann noch als zahl dabei.
-// 1 % 6 = 0, rest 1
-// 2 % 6 = 0, rest 2
-// etc.
-// 6 % 6 = 1, rest 0
+

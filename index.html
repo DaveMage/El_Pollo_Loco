@@ -9,32 +9,26 @@
     <link rel="stylesheet" href="style.css">
     <audio id="mainAudio">
         <!-- <source src="/audio/maintheme.mp3" type="audio/mp3"> -->
-    </audio>
-    <script src="/js/models/drawable-object.class.js"></script>
-    <!--   wenn eine class nicht definde ist, ist sie im script evtl zu spät aufgerufen   -->
-    <script src="/js/models/movable-object.class.js"></script>
-    <script src="/js/models/cloud.class.js"></script>
-    <script src="/js/models/character.class.js"></script>
-    <script src="/js/models/coins.class.js"></script>
-    <script src="/js/models/bottle.class.js"></script>
-    <script src="/js/models/chicken.class.js"></script>
-    <script src="/js/models/chicken-small.class.js"></script>
-    <script src="/js/models/status-bar.class.js"></script>
-    <script src="/js/models/coin-status-bar.class.js"></script>
-    <script src="/js/models/bottle-status-bar.class.js"></script>
-    <script src="/js/models/collisionHandler.class.js"></script>
-    <script src="/js/models/world.class.js"></script>
-
-    <script src="/js/models/background-object.class.js"></script>
-
-
-    <script src="/js/models/keyboard.class.js"></script>
-    <script src="/js/models/level.class.js"></script>
-    <script src="/js/models/throwable-objects.class.js"></script>
-    <script src="/js/models/endboss.class.js"></script>
-    <script src="/js/levels/level1.js"></script>
+    </audio><script src="js/models/drawable-object.class.js"></script>
+    <script src="js/models/movable-object.class.js"></script>
+    <script src="js/models/cloud.class.js"></script>
+    <script src="js/models/character.class.js"></script>
+    <script src="js/models/coins.class.js"></script>
+    <script src="js/models/bottle.class.js"></script>
+    <script src="js/models/chicken.class.js"></script>
+    <script src="js/models/chicken-small.class.js"></script>
+    <script src="js/models/status-bar.class.js"></script>
+    <script src="js/models/coin-status-bar.class.js"></script>
+    <script src="js/models/bottle-status-bar.class.js"></script>
+    <script src="js/models/collisionHandler.class.js"></script>
+    <script src="js/models/world.class.js"></script>
+    <script src="js/models/background-object.class.js"></script>
+    <script src="js/models/keyboard.class.js"></script>
+    <script src="js/models/level.class.js"></script>
+    <script src="js/models/throwable-objects.class.js"></script>
+    <script src="js/models/endboss.class.js"></script>
+    <script src="js/levels/level1.js"></script>
     <script src="js/game.js"></script>
-
 
 </head>
 
@@ -46,14 +40,14 @@
     <div id="createFullScreen"  class="mainScreen">
         <div class="menuBtnBar">
             <span>
-                <img class="menuBtn" onclick="reload()" src="/img/10_menu_buttons/home.png" alt="icon">
+                <img class="menuBtn" onclick="reload()" src="img/10_menu_buttons/home.png" alt="icon">
             </span>
             <span>
-                <img id="gameSound" class="menuBtn" onclick="toggleSound()" src="/img/10_menu_buttons/sound_on.png"
+                <img id="gameSound" class="menuBtn" onclick="toggleSound()" src="img/10_menu_buttons/sound_on.png"
                     alt="icon">
             </span>
             <span>
-                <img class="menuBtn" onclick="startGame()" src="/img/10_menu_buttons/restart.png" alt="">
+                <img class="menuBtn" onclick="startGame()" src="img/10_menu_buttons/restart.png" alt="">
             </span>
             <!-- <span>
                 <img class="menuBtn" src="/img/10_menu_buttons/full_screen.png" alt="">
@@ -62,7 +56,7 @@
         <!-- <div>mobile</div> -->
         <div id="start" class="startScreenLayer">
             <button class="startButton" onclick="startGame()">Start</button>
-            <img class="startImage" src="/img/9_intro_outro_screens/start/startscreen_1.png" alt="">
+            <img class="startImage" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
         </div>
         <canvas id="canvas" width="720" height="480"> </canvas>
         <!-- <div>endscreen</div>
@@ -74,13 +68,13 @@
         <h2>Controls</h2>
         <div class="lowerGameControlSection">
             <span class="lowerGameControls">
-                <img src="/img/10_menu_buttons/move_left.png" alt="Icon" class="icon"> Left
+                <img src="img/10_menu_buttons/move_left.png" alt="Icon" class="icon"> Left
             </span>
             <span class="lowerGameControls">
-                <img src="/img/10_menu_buttons/move_right.png" alt="Icon" class="icon"> Right
+                <img src="img/10_menu_buttons/move_right.png" alt="Icon" class="icon"> Right
             </span>
             <span class="lowerGameControls">
-                <img src="/img/10_menu_buttons/jump.png" alt="Icon" class="icon"> Jump
+                <img src="img/10_menu_buttons/jump.png" alt="Icon" class="icon"> Jump
             </span>
             <span class="lowerGameControls">
                 <span class="icon iconLetter">D</span> Throw
@@ -97,21 +91,21 @@
         <h3>Impressum</h3>
         <div class="impressumInfo">
             <h4>Adresse</h4>
-            <span>David Mages</span>
-            <span>Manningtree Str.6</span>
-            <span>35066 Frankenberg</span>
+            <span>David#######</span>
+            <span>#############</span>
+            <span>###############</span>
         </div>
         <div class="impressumInfo">
             <h4>Kontakt</h4>
-            <span>Telefon: +49 1573 0945590</span>
-            <span>E-Mail: david.mages@yahoo.de</span>
+            <span>Telefon: +49 1#######</span>
+            <span>E-Mail: d##########</span>
         </div>
         <div class="impressumInfo">
             <h4>Datenschutzerklärung</h4>
             <span>Zur Datenschutzerklärung geht es hier</span>
             <span>
-                <a href="/privacy-policy.html">
-                    <img class="linkBtn" src="/img/10_menu_buttons/link.png" alt="HIER">
+                <a href="privacy-policy.html">
+                    <img class="linkBtn" src="img/10_menu_buttons/link.png" alt="HIER">
                 </a>
             </span>
 

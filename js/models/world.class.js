@@ -25,7 +25,7 @@ class World {
         this.character.world = this;
     }
 
-    updateCoinStatusBar() {         // neu
+    updateCoinStatusBar() {
         let collectedCoins = this.level.totalCoins - this.level.coins.length;
         let percentage = (collectedCoins / this.level.totalCoins) * 100;
         this.coin_statusbar.setPercentage(percentage);
@@ -38,13 +38,12 @@ class World {
         }, 200);
     }
 
-    checkThrowObjects() {     
-            if (this.keyboard.D && this.bottle_statusbar.percentage > 0) {
-                let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
-                this.throwableObjects.push(bottle);        
-                this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
-            }
-   
+    checkThrowObjects() {
+        if (this.keyboard.D && this.bottle_statusbar.percentage > 0) {
+            let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
+            this.throwableObjects.push(bottle);
+            this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
+        }
     }
 
     draw() {
@@ -56,16 +55,20 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
-        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);    // geändert, war hinten bei character
+
         this.ctx.translate(-this.camera_x, 0);  // back
         // ------------- space for fix objects -----------------
         this.addToMap(this.statusBar);
         this.addToMap(this.coin_statusbar);
         this.addToMap(this.bottle_statusbar);
+
         this.ctx.translate(this.camera_x, 0);   // forwards       
 
-        this.addObjectsToMap(this.level.enemies);
+
         this.addToMap(this.character);
+
         this.ctx.translate(-this.camera_x, 0);
         // draw wird immer wieder aufgerufen
         let self = this;

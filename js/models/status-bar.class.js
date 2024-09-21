@@ -13,7 +13,7 @@ class StatusBar extends DrawableObject {
     percentage = 100;
 
     constructor() {
-        super();    // hiermit werden dir mathoden vom übergeordneten objekt initialisiert.
+        super();    // hiermit werden die Methoden vom übergeordneten objeckt initialisiert.
         this.loadImages(this.IMAGES_STATUSBAR_HEALTH);
         this.x = 30;
         this.y = 0;
@@ -21,7 +21,6 @@ class StatusBar extends DrawableObject {
         this.height = 50;
         this.setPercentage(100);
     }
-
 
     setPercentage(percentage) {
         this.percentage = percentage;
@@ -46,6 +45,4 @@ class StatusBar extends DrawableObject {
             return 0;
         }
     }
-
-
 }
