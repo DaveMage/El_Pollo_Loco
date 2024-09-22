@@ -59,7 +59,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 1400;
+        this.x = 400;  // x = 1400
         this.animate();
     }
 
@@ -71,6 +71,14 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             }
 
-        }, 300);
+        }, 500);
+    }
+
+    playHurtAnimation() {
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                this.playAnimation(this.IMAGES_HURT);
+            }, i * 300); // 300ms Verzögerung zwischen den Wiederholungen
+        }
     }
 }

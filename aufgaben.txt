@@ -1,13 +1,27 @@
 Aufgaben
 
 - Start Screen  -Done
-- Musik + Sounds
 - Coins einsammeln -Done
 - Flaschen einsammeln   -Done
-- Flaschen nur werfen, wenn sie vorhanden sind
+- Flaschen nur werfen, wenn sie vorhanden sind -Done
 - Collision -Done
-- Endgegner besiegen
-- Game-Over Screen
+- Endgegner besiegen -Done
 - Fullscreen -erstmal auf eig gelegt
 - Erklärung (welche Tasten) -Done
+
+
+- Musik + Sounds
+- Game-Over Screen
 - responsiv passt nicht mehr
+
+sounds:
+    flaschenwurf
+    flaschenbruch
+    sprung
+    sprung auf huhn
+    pepe wird verletzt
+    endboss wird getroffen
+    endboss stirb
+    endboss spawnt
+    spiel gewonnen
+    spiel verloren

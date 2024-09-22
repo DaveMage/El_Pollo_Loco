@@ -12,6 +12,7 @@ class World {
     throwableObjects = [];
     collisionHandler;
     canThrow = true;
+    firstContact = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -72,7 +73,11 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);  // back
         // ------------- space for fix objects -----------------
-        this.addToMap(this.endboss_healthbar);
+
+        if (this.character.x > 1000 || this.firstContact) {
+            this.addToMap(this.endboss_healthbar);
+            this.firstContact = true;
+        }
         this.addToMap(this.statusBar);
         this.addToMap(this.coin_statusbar);
         this.addToMap(this.bottle_statusbar);

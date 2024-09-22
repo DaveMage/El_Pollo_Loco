@@ -1,4 +1,5 @@
 class Coins extends MovableObject {
+    static nextSpawn = 300; 
     x = 100;
     y = 150;
     height = 200;
@@ -19,7 +20,8 @@ class Coins extends MovableObject {
     constructor() {
         super().loadImage('img/8_coin/coin_1.png')
         this.loadImages(this.IMAGES_COIN);
-        this.x = 300 + Math.random() * 500;
+        this.x = Coins.nextSpawn;
+        Coins.nextSpawn += 300 +- Math.random() * 200; 
         this.animate();
     }
 
@@ -32,4 +34,5 @@ class Coins extends MovableObject {
     remove() {
         this.x = -1000; // Münze außerhalb des sichtbaren Bereichs verschieben
     }
+
 }

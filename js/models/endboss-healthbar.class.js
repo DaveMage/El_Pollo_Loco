@@ -9,6 +9,8 @@ class EndbossHealthBar extends DrawableObject {
 
     percentage = 100;
 
+
+
     constructor() {
         super();    // hiermit werden die Methoden vom übergeordneten objeckt initialisiert.
         this.loadImages(this.IMAGE_BOSS_HEALTH);
@@ -24,7 +26,6 @@ class EndbossHealthBar extends DrawableObject {
         let path = this.IMAGE_BOSS_HEALTH[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
 
     resolveImageIndex() {
 

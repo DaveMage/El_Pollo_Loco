@@ -23,7 +23,6 @@ class CollisionHandler {
                 this.world.level.coins.splice(index, 1);
                 console.log('Collision with Character', coin);
                 this.world.coin_statusbar.setPercentage(this.world.coin_statusbar.percentage += 20);
-
             }
         });
     }
@@ -35,23 +34,22 @@ class CollisionHandler {
                 this.world.level.bottle.splice(index, 1);
                 console.log('Collision with Character', bottle);
                 this.world.bottle_statusbar.setPercentage(this.world.bottle_statusbar.percentage += 20);
-
             }
         });
     }
 
     checkEnemyCollision() {
         this.world.level.enemies.forEach((enemy) => {
-            if (this.world.character.isColliding(enemy)) {
+            if (this.world.character.isColliding(enemy) && !this.collisionDetected) {
                 if (this.isFalling() && this.world.character.isColliding(enemy) && this.world.character.speedY < 0 && !enemy.isDead) {
                     this.world.character.speedY = 20;
                     enemy.die();
+                    this.hitTimeout();
                 } else if (!enemy.isDead) {
-                    console.log('doch getroffen')
                     this.world.character.hit();
                     this.world.statusBar.setPercentage(this.world.character.energy);
                     console.log('Collision with Character, energy', this.world.character.energy);
-                    console.log(Boolean, this.isFalling())
+                    this.hitTimeout();
                 }
             }
         });
@@ -61,7 +59,7 @@ class CollisionHandler {
         return this.world.character.isAboveGround();
     }
 
-    bottleColliding() {
+    bottleColliding() {     // evtl auf endboss ummünzen
         this.world.level.enemies.forEach((enemy) => {
             for (let i = 0; i < this.world.throwableObjects.length; i++) {
                 let bottle = this.world.throwableObjects[i];
@@ -73,14 +71,18 @@ class CollisionHandler {
                     enemy.energy -= 41;
                     console.log('Getroffen, energy', enemy.energy);
                     this.world.endboss_healthbar.setPercentage(enemy.energy);
-                    
-                    this.collisionDetected = true;
-                    setTimeout(() => {
-                        this.collisionDetected = false;
-                    }, 500); 
+                    enemy.playHurtAnimation(); // Hier wird die Hurt-Animation abgespielt
+                    this.hitTimeout(); 
                 }
             }
         });
+    }
+
+    hitTimeout() {
+        this.collisionDetected = true;
+        setTimeout(() => {
+            this.collisionDetected = false;
+        }, 500); 
     }
 }
 
