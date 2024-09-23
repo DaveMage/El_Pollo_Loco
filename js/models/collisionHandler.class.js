@@ -69,10 +69,12 @@ class CollisionHandler {
                     let collisionY = bottle.y;
                     bottle.bottleSplash(collisionX, collisionY);
                     enemy.energy -= 41;
-                    console.log('Getroffen, energy', enemy.energy);
                     this.world.endboss_healthbar.setPercentage(enemy.energy);
-                    enemy.playHurtAnimation(); // Hier wird die Hurt-Animation abgespielt
+                    enemy.isHit = true;
                     this.hitTimeout(); 
+                    setTimeout(() => {
+                        enemy.isHit = false;
+                    }, 2000);
                 }
             }
         });

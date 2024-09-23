@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     collisionDetected = false;
+    endbossIsDeafeat = false;
 
 
     applyGravity() {
@@ -18,7 +19,7 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // throable objects should always fall
+        if (this instanceof ThrowableObject) { 
             return true;
         } else {
             return this.y < 270

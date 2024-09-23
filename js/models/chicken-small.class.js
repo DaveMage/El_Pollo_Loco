@@ -21,7 +21,7 @@ class ChickenSmall extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.x = ChickenSmall.nextSpawn;
         ChickenSmall.nextSpawn += 700 +- Math.random() * 700; 
-        // this.x = 700 + Math.random() * 500;
+        this.x = 700 + Math.random() * 500;
         this.speed = 0.2 + Math.random() * 0.5;
 
         this.animate();

@@ -65,7 +65,9 @@ window.addEventListener("keyup", (event) => {
 })
 
 function startGame() {
+    let endscreen = document.getElementById('endScreenWin')
     let game = document.getElementById('start');
+    endscreen.classList.add("dNone")
     game.classList.add("dNone");
     let canvas = document.getElementById('canvas');
     canvas.classList.add("dBlock");
@@ -118,26 +120,16 @@ function stopAudio() {
     mainTheme.pause();
 }
 
+function showEndScreen() {
+    let endscreen = document.getElementById('endScreenWin');
+    endscreen.classList.remove("dNone");
+}
+
+function stopGame() {
+    
+}
+
 
   
 
 
-
-//   function exitFullscreen() {
-//     if(document.exitFullscreen) {
-//       document.exitFullscreen();
-//     } else if(document.webkitExitFullscreen) {
-//       document.webkitExitFullscreen();
-//     }
-//   }
-  
-//   exitFullscreen();
-
-
-// const button = document.getElementById("startButton");
-// const hoverSound = document.getElementById("hoverSound");
-
-// button.addEventListener("mouseenter", () => {
-//     hoverSound.currentTime = 0; // Startet den Sound von Anfang an
-//     hoverSound.play();
-// });

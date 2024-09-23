@@ -3,6 +3,13 @@ class Endboss extends MovableObject {
     width = 200;
     y = 140;
     hitCount = 3;
+    // speed = 0.20;
+    isHit = false;
+    toggleAnimation = false;
+    firstContact = true;
+    isWalking = false;
+    isDead = false;
+    defeat = false;
 
     offset = {
         top: 50,
@@ -60,25 +67,45 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 400;  // x = 1400
+        this.speed = 2.5;
         this.animate();
     }
 
     animate() {
+        let j = 0
+        let i = 0
         setInterval(() => {
             if (this.energy > 0) {
-                this.playAnimation(this.IMAGES_ALERT);
+                if (this.isHit) {
+                    this.playAnimation(this.IMAGES_HURT);
+                } else if (i < 10) {
+                    this.playAnimation(this.IMAGES_ALERT);
+                } else if (i > 10 && i < 20) {
+                    this.playAnimation(this.IMAGES_ATTACK);
+                } else if (i > 20 && i < 25) {
+                    this.playAnimation(this.IMAGES_WALK);
+                    this.isWalking = true;
+                } else if (i > 25) {
+                    i = 0;
+                    this.isWalking = false
+                }
+            } else if (j > 16) {
+                showEndScreen();
+            } else if (j > 2) {
+                this.defeat = true;
+                j++
             } else {
                 this.playAnimation(this.IMAGES_DEAD);
+                console.log(j);
+                j++
             }
+            i++
+        }, 250);
 
-        }, 500);
-    }
-
-    playHurtAnimation() {
-        for (let i = 0; i < 3; i++) {
-            setTimeout(() => {
-                this.playAnimation(this.IMAGES_HURT);
-            }, i * 300); // 300ms Verzögerung zwischen den Wiederholungen
-        }
+        setInterval(() => {
+            if (this.isWalking) {
+                this.moveLeft();
+            }
+        }, 1000 / 60);
     }
 }

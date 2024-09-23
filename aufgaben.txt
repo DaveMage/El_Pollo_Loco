@@ -8,11 +8,16 @@ Aufgaben
 - Endgegner besiegen -Done
 - Fullscreen -erstmal auf eig gelegt
 - Erklärung (welche Tasten) -Done
+- Game-Over Screen -Done
 
 
 - Musik + Sounds
-- Game-Over Screen
 - responsiv passt nicht mehr
+- GameStop bauen Modul 12 video "intervalle wieder beenden"
+- enemies müssen verschwinden nach dem sterben
+- restart btn geht nicht richtig
+- mobile version bauen
+
 
 sounds:
     flaschenwurf

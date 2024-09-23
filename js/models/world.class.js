@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -9,6 +10,7 @@ class World {
     coin_statusbar = new CoinStatusBar();
     bottle_statusbar = new BottleStatusBar();
     endboss_healthbar = new EndbossHealthBar();
+    endScreenWin = new EndscreenWin();
     throwableObjects = [];
     collisionHandler;
     canThrow = true;
@@ -26,6 +28,7 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        this.endboss.world = this;
     }
 
     updateCoinStatusBar() {
@@ -81,6 +84,9 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coin_statusbar);
         this.addToMap(this.bottle_statusbar);
+        if (this.level.enemies[0].defeat) {
+            this.addToMap(this.endScreenWin);
+        }
 
         this.ctx.translate(this.camera_x, 0);   // forwards       
 

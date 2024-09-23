@@ -28,6 +28,13 @@ body {
     display: block;
 }
 
+.endScreenLayer {
+    width: 720px;
+    height: 480px;
+    position: absolute;
+    z-index: 505;
+}
+
 .startImage {
     width: 720px;
     height: 480px;
@@ -74,6 +81,55 @@ body {
 
 .menuBtn:hover {
     transform: scale(1.1);
+}
+
+.endScreenImgWon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 450px;
+    transform: translate(-50%);
+    left: 50% !important;
+}
+
+.playAgainBtn {
+    position: absolute;
+    z-index: 500;
+    top: 300px;
+    transform: translate(-50%);
+    cursor: pointer;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    background-color: rgb(255, 219, 5);
+    border-radius: 10px;
+    width: 160px;
+    height: 72px;
+    box-shadow: 6px 6px 5px -3px #000000;
+    left: 50% !important;
+}
+
+.playAgainBtn:hover {
+    background-color: rgb(246, 222, 38);
+}
+
+.MainMenuBtn {
+    position: absolute;
+    z-index: 510;
+    top: 380px;
+    transform: translate(-50%);
+    cursor: pointer;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    background-color: rgb(255, 219, 5);
+    border-radius: 10px;
+    width: 160px;
+    height: 72px;
+    box-shadow: 6px 6px 5px -3px #000000;
+    left: 50% !important;
+}
+
+.MainMenuBtn:hover {
+    background-color: rgb(246, 222, 38);
 }
 
 
