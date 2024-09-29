@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     collisionDetected = false;
     endbossIsDeafeat = false;
+    deathTime = null; // Neue Variable für die Todeszeit
 
 
     applyGravity() {
@@ -69,6 +70,16 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; //difference in ms
         timepassed = timepassed / 1000; // difference in sec
         return timepassed < 2;
+    }
+
+    removeAfterDeath() {
+        if (this.isDead && this.deathTime && (new Date().getTime() - this.deathTime) > 1500) {
+            this.remove();
+        }
+    }
+
+    remove() {
+        this.x = -1000;
     }
 }
 

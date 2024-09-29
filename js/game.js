@@ -1,16 +1,26 @@
 let canvas;
-let world; 
+let world;
 let keyboard = new Keyboard();
 let mainTheme = document.getElementById('mainAudio');
+// let intervalIds = [];
 // let fullscreen = document.getElementById('fullscreen');
+
+
+// function stopGameInterval() {
+//     // intervalle beenden
+//     for (let i = 0; i < intervalIds.length; i++) {
+//         const id = intervalIds[i];
+//         clearInterval(id);
+//     }
+// }
 
 
 
 
 function init() {
     canvas = document.getElementById('canvas');
+    lowerVolume()
 }
-
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -87,7 +97,13 @@ function openImpressum() {
 }
 
 function reload() {
-    window.location.reload();
+    let endscreen = document.getElementById('endScreenWin')
+    let game = document.getElementById('start');
+    endscreen.classList.add("dNone")
+    game.classList.remove("dNone");
+    let canvas = document.getElementById('canvas');
+    canvas.classList.remove("dBlock");
+    stopAudio();
 }
 
 function toggleSound() {
@@ -98,7 +114,7 @@ function toggleSound() {
         img.src = '/img/10_menu_buttons/sound_off.png';
         stopAudio();
     } else {
-        img.src ='/img/10_menu_buttons/sound_on.png';
+        img.src = '/img/10_menu_buttons/sound_on.png';
         if (startScreen.classList.contains('dNone')) {
             playAudio();
         }
@@ -118,6 +134,7 @@ function playAudio() {
 
 function stopAudio() {
     mainTheme.pause();
+    mainTheme.currentTime = 0;
 }
 
 function showEndScreen() {
@@ -125,11 +142,29 @@ function showEndScreen() {
     endscreen.classList.remove("dNone");
 }
 
-function stopGame() {
-    
+function lowerVolume() {
+    let audio = document.getElementById('mainAudio');
+    audio.volume = 0.3;
+}
+
+function playButtonAudio() {
+    buttonSound.play();
+}
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
+function restart() {
+    clearAllIntervals();
+    startGame();
 }
 
 
-  
+
+
+
+
+
 
 

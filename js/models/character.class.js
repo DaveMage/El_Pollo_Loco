@@ -3,6 +3,7 @@ class Character extends MovableObject {
     speed = 3;
     collectedCoins = 0;
     collectedBottle = 0;
+    characterIntervalIds = [];
 
     offset = {
         top: 50,
@@ -92,7 +93,7 @@ class Character extends MovableObject {
 
     animate() {
 
-        setInterval(() => {
+        let interval1 = setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
                 this.moveRight();
@@ -113,7 +114,7 @@ class Character extends MovableObject {
             this.world.camera_x = 0 - this.x + 100;
         }, 1000 / 60);
 
-        setInterval(() => {
+        let interval2 = setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -129,11 +130,30 @@ class Character extends MovableObject {
                 }
             }
         }, 100);
+        this.characterIntervalIds.push(interval1);
+        this.characterIntervalIds.push(interval2);
+
+        setInterval(() => {
+            this.characterStopActing()
+        }, 100);
     }
 
     jump() {
         this.speedY = 20;
     }
+
+    characterStopActing() {
+        if (this.world.level.enemies[0].defeat) {
+            for (let i = 0; i < this.characterIntervalIds.length; i++) {
+                const id = this.characterIntervalIds[i];    
+                clearInterval(id); 
+                this.walking_sound.pause();  
+                this.walking_sound.currentTime = 0;            
+            }
+        }
+    }
+
+
 }
 
 

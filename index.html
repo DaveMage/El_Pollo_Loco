@@ -7,9 +7,13 @@
     <title>El Pollo Loco</title>
     <link rel="icon" type="image/png" href="./img/7_statusbars/3_icons/icon_coin.png">
     <link rel="stylesheet" href="style.css">
+    <audio id="buttonAudio">
+        <source src="/audio/buttonClick.mp3" type="audio/mp3">
+    </audio>
     <audio id="mainAudio">
-        <!-- <source src="/audio/maintheme.mp3" type="audio/mp3"> -->
-    </audio><script src="js/models/drawable-object.class.js"></script>
+        <source src="/audio/maintheme.mp3" type="audio/mp3">
+    </audio>
+    <script src="js/models/drawable-object.class.js"></script>
     <script src="js/models/movable-object.class.js"></script>
     <script src="js/models/cloud.class.js"></script>
     <script src="js/models/endscreen-win.class.js"></script>
@@ -39,7 +43,7 @@
     <h1>El Pollo Loco</h1>
 
     <!-- Zweit Versuch -->
-    <div id="createFullScreen"  class="mainScreen">
+    <div id="createFullScreen" class="mainScreen">
         <div class="menuBtnBar">
             <span>
                 <img class="menuBtn" onclick="reload()" src="img/10_menu_buttons/home.png" alt="icon">
@@ -49,7 +53,7 @@
                     alt="icon">
             </span>
             <span>
-                <img class="menuBtn" onclick="startGame()" src="img/10_menu_buttons/restart.png" alt="">
+                <img class="menuBtn" onclick="restart()" src="img/10_menu_buttons/restart.png" alt="">
             </span>
             <!-- <span>
                 <img class="menuBtn" src="/img/10_menu_buttons/full_screen.png" alt="">
@@ -65,9 +69,9 @@
         <div id="endScreenWin" class="endScreenLayer dNone">
             <img class="startImage" src="img/5_background/second_half_background.png" alt="Background">
             <img class="endScreenImgWon" src="img/9_intro_outro_screens/win/won_2.png" alt="Won">
-            <button class="playAgainBtn" onclick="startGame()">Play Again!</button>
+            <!-- <button class="playAgainBtn" onclick="startGame()">Play Again!</button> -->
             <button class="MainMenuBtn" onclick="reload()">Main Menu</button>
-        </div> 
+        </div>
     </div>
 
     <!-- Lower Game Section -->

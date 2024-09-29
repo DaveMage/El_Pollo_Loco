@@ -13,9 +13,9 @@ Aufgaben
 
 - Musik + Sounds
 - responsiv passt nicht mehr
-- GameStop bauen Modul 12 video "intervalle wieder beenden"
-- enemies müssen verschwinden nach dem sterben
-- restart btn geht nicht richtig
+- GameStop bauen Modul 12 video "intervalle wieder beenden" -Done
+- enemies müssen verschwinden nach dem sterben -Done
+- restart btn geht nicht richtig -Done
 - mobile version bauen
 
 

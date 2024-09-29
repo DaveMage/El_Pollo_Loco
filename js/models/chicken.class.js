@@ -36,8 +36,10 @@ class Chicken extends MovableObject {
 
 
         setInterval(() => {
+            let i = 0;
             if (this.isDead) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.removeAfterDeath(); // Methode zum Entfernen nach dem Tod aufrufen
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
@@ -46,5 +48,6 @@ class Chicken extends MovableObject {
 
     die() {
         this.isDead = true;
+        this.deathTime = new Date().getTime(); // Todeszeit setzen
     }
 }

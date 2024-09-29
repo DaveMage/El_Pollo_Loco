@@ -66,7 +66,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 400;  // x = 1400
+        this.x = 2400;  // x = 1400
         this.speed = 2.5;
         this.animate();
     }
@@ -89,8 +89,9 @@ class Endboss extends MovableObject {
                     i = 0;
                     this.isWalking = false
                 }
-            } else if (j > 16) {
+            } else if (j > 10) {
                 showEndScreen();
+                clearAllIntervals();
             } else if (j > 2) {
                 this.defeat = true;
                 j++
@@ -108,4 +109,5 @@ class Endboss extends MovableObject {
             }
         }, 1000 / 60);
     }
+
 }

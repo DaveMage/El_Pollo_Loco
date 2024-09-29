@@ -77,7 +77,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);  // back
         // ------------- space for fix objects -----------------
 
-        if (this.character.x > 1000 || this.firstContact) {
+        if (this.character.x > 1800 || this.firstContact) {
             this.addToMap(this.endboss_healthbar);
             this.firstContact = true;
         }
@@ -131,4 +131,6 @@ class World {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();
     }
+
+
 }
