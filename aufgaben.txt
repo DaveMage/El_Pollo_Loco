@@ -30,7 +30,3 @@ sounds:
     endboss spawnt
     spiel gewonnen
     spiel verloren
-
-
-
-    ndölaugbföaujbgföAÄNF
