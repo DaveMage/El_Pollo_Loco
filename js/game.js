@@ -19,7 +19,7 @@ let mainTheme = document.getElementById('mainAudio');
 
 function init() {
     canvas = document.getElementById('canvas');
-    lowerVolume()
+    lowerVolume();
 }
 
 window.addEventListener("keydown", (event) => {
@@ -97,9 +97,11 @@ function openImpressum() {
 }
 
 function reload() {
-    let endscreen = document.getElementById('endScreenWin')
+    let endscreen = document.getElementById('endScreenWin');
+    let endscreenLose = document.getElementById('endScreenLose');
     let game = document.getElementById('start');
-    endscreen.classList.add("dNone")
+    endscreen.classList.add("dNone");
+    endscreenLose.classList.add("dNone");
     game.classList.remove("dNone");
     let canvas = document.getElementById('canvas');
     canvas.classList.remove("dBlock");
@@ -142,6 +144,11 @@ function showEndScreen() {
     endscreen.classList.remove("dNone");
 }
 
+function showLoseScreen() {
+    let loseScreen = document.getElementById('endScreenLose')
+    loseScreen.classList.remove("dNone");
+}
+
 function lowerVolume() {
     let audio = document.getElementById('mainAudio');
     audio.volume = 0.3;
@@ -159,6 +166,8 @@ function restart() {
     clearAllIntervals();
     startGame();
 }
+
+
 
 
 

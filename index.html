@@ -41,8 +41,7 @@
 <body onload="init()">
     <!-- Headline -->
     <h1>El Pollo Loco</h1>
-
-    <!-- Zweit Versuch -->
+    
     <div id="createFullScreen" class="mainScreen">
         <div class="menuBtnBar">
             <span>
@@ -55,9 +54,6 @@
             <span>
                 <img class="menuBtn" onclick="restart()" src="img/10_menu_buttons/restart.png" alt="">
             </span>
-            <!-- <span>
-                <img class="menuBtn" src="/img/10_menu_buttons/full_screen.png" alt="">
-            </span> -->
         </div>
         <!-- <div>mobile</div> -->
         <div id="start" class="startScreenLayer">
@@ -65,11 +61,16 @@
             <img class="startImage" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
         </div>
         <canvas id="canvas" width="720" height="480"> </canvas>
-        <!-- <div>endscreen</div> -->
+        <!-- lose screen -->
+        <div id="endScreenLose" class="endScreenLayer dNone">
+            <img class="startImage" src="img/5_background/second_half_background.png" alt="Background">
+            <img class="endScreenImgLose" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="Lose">
+            <button class="MainMenuBtn" onclick="reload()">Try Again!</button> 
+        </div>
+        <!-- win screen -->
         <div id="endScreenWin" class="endScreenLayer dNone">
             <img class="startImage" src="img/5_background/second_half_background.png" alt="Background">
             <img class="endScreenImgWon" src="img/9_intro_outro_screens/win/won_2.png" alt="Won">
-            <!-- <button class="playAgainBtn" onclick="startGame()">Play Again!</button> -->
             <button class="MainMenuBtn" onclick="reload()">Main Menu</button>
         </div>
     </div>

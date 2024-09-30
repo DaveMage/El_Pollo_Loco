@@ -7,7 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     collisionDetected = false;
     endbossIsDeafeat = false;
-    deathTime = null; // Neue Variable für die Todeszeit
+    deathTime = null;
 
 
     applyGravity() {

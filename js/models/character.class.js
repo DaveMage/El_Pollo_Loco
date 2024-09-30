@@ -118,6 +118,8 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                showLoseScreen()
+                this.clearAllIntervals()
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
@@ -145,12 +147,18 @@ class Character extends MovableObject {
     characterStopActing() {
         if (this.world.level.enemies[0].defeat) {
             for (let i = 0; i < this.characterIntervalIds.length; i++) {
-                const id = this.characterIntervalIds[i];    
-                clearInterval(id); 
-                this.walking_sound.pause();  
-                this.walking_sound.currentTime = 0;            
+                const id = this.characterIntervalIds[i];
+                clearInterval(id);
+                this.walking_sound.pause();
+                this.walking_sound.currentTime = 0;
             }
         }
+    }
+
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+        this.walking_sound.pause();
+        this.walking_sound.currentTime = 0;
     }
 
 

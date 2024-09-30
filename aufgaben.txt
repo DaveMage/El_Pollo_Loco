@@ -16,7 +16,9 @@ Aufgaben
 - GameStop bauen Modul 12 video "intervalle wieder beenden" -Done
 - enemies müssen verschwinden nach dem sterben -Done
 - restart btn geht nicht richtig -Done
+- endscrren wenn verloren   -Done
 - mobile version bauen
+- reload überarbeiten. Character stirbt!
 
 
 sounds:
