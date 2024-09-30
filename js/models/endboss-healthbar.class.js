@@ -4,7 +4,7 @@ class EndbossHealthBar extends DrawableObject {
         'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
         'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
         'img/7_statusbars/2_statusbar_endboss/green/green60.png',
-        'img/7_statusbars/2_statusbar_endboss/blue/blue100.png',    // 3
+        'img/7_statusbars/2_statusbar_endboss/blue/blue100.png',    
     ];
 
     percentage = 100;
@@ -12,7 +12,7 @@ class EndbossHealthBar extends DrawableObject {
 
 
     constructor() {
-        super();    // hiermit werden die Methoden vom übergeordneten objeckt initialisiert.
+        super();    
         this.loadImages(this.IMAGE_BOSS_HEALTH);
         this.x = 500;
         this.y = 50;

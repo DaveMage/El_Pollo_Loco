@@ -22,10 +22,9 @@ class Bottle extends MovableObject {
         this.loadImages(this.IMAGES_BOTTLE);
         this.x = Bottle.nextSpawn;
         Bottle.nextSpawn += 300 +- Math.random() * 200; 
-        // this.x = 250 + Math.random() * 1000;
     }
 
     remove() {
-        this.x = -1000; // Flasche außerhalb des sichtbaren Bereichs verschieben
+        this.x = -1000; 
     }
 }

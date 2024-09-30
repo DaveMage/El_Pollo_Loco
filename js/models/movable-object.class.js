@@ -9,7 +9,6 @@ class MovableObject extends DrawableObject {
     endbossIsDeafeat = false;
     deathTime = null;
 
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -28,7 +27,7 @@ class MovableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImage % images.length;  // let i = 0 % 6 - 
+        let i = this.currentImage % images.length;  
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
@@ -46,11 +45,11 @@ class MovableObject extends DrawableObject {
         this.speedY = 20;
     }
 
-    isColliding(movableObject) {    // mit offset
-        return this.x + this.width -this.offset.right > movableObject.x + movableObject.offset.left &&  // R -> L
-            this.y + this.height -this.offset.bottom > movableObject.y + movableObject.offset.top &&     // top -> bottom
-            this.x + this.offset.left < movableObject.x + movableObject.width -movableObject.offset.right && // L -> R
-            this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom; // bottom -> top
+    isColliding(movableObject) {   
+        return this.x + this.width -this.offset.right > movableObject.x + movableObject.offset.left && 
+            this.y + this.height -this.offset.bottom > movableObject.y + movableObject.offset.top &&     
+            this.x + this.offset.left < movableObject.x + movableObject.width -movableObject.offset.right && 
+            this.y + this.offset.top < movableObject.y + movableObject.height - movableObject.offset.bottom; 
     }
 
     hit() {
@@ -67,8 +66,8 @@ class MovableObject extends DrawableObject {
     }
 
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; //difference in ms
-        timepassed = timepassed / 1000; // difference in sec
+        let timepassed = new Date().getTime() - this.lastHit; 
+        timepassed = timepassed / 1000; 
         return timepassed < 2;
     }
 

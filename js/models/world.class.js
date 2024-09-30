@@ -69,13 +69,10 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
-
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);   
 
-        this.addObjectsToMap(this.throwableObjects);    // geändert, war hinten bei character
-
-        this.ctx.translate(-this.camera_x, 0);  // back
-        // ------------- space for fix objects -----------------
+        this.ctx.translate(-this.camera_x, 0); 
 
         if (this.character.x > 1800 || this.firstContact) {
             this.addToMap(this.endboss_healthbar);
@@ -88,15 +85,13 @@ class World {
             this.addToMap(this.endScreenWin);
         }
 
-        this.ctx.translate(this.camera_x, 0);   // forwards       
-
+        this.ctx.translate(this.camera_x, 0);  
 
         this.addToMap(this.character);
-
         this.ctx.translate(-this.camera_x, 0);
-        // draw wird immer wieder aufgerufen
+      
         let self = this;
-        requestAnimationFrame(function () {     // in dieser function erkennt er das this. nicht mehr. deswegen wird es vorher mit let self definiert.
+        requestAnimationFrame(function () {     
             self.draw();
         });
     }
@@ -113,8 +108,6 @@ class World {
             this.flipImage(movableObject);
         }
         movableObject.draw(this.ctx);
-        movableObject.drawFrame(this.ctx);
-
         if (movableObject.otherDirection) {
             this.flipImageBack(movableObject);
         }
@@ -131,6 +124,4 @@ class World {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();
     }
-
-
 }

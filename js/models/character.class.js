@@ -85,8 +85,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_IDLE);              //idle
-        this.loadImages(this.IMAGES_IDLE_LONG);         // idle
+        this.loadImages(this.IMAGES_IDLE);              
+        this.loadImages(this.IMAGES_IDLE_LONG);         
         this.applyGravity();
         this.animate();
     }
@@ -106,7 +106,6 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.walking_sound.play();
             }
-            console.log('this.speedY', this.speedY)
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
@@ -127,7 +126,6 @@ class Character extends MovableObject {
             } else {
 
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // walk animation
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
@@ -160,8 +158,6 @@ class Character extends MovableObject {
         this.walking_sound.pause();
         this.walking_sound.currentTime = 0;
     }
-
-
 }
 
 

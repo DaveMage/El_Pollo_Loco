@@ -17,7 +17,7 @@ Aufgaben
 - enemies müssen verschwinden nach dem sterben -Done
 - restart btn geht nicht richtig -Done
 - endscrren wenn verloren   -Done
-- mobile version bauen
+- mobile version bauen -Done
 - reload überarbeiten. Character stirbt!
 
 

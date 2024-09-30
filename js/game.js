@@ -2,24 +2,12 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let mainTheme = document.getElementById('mainAudio');
-// let intervalIds = [];
-// let fullscreen = document.getElementById('fullscreen');
-
-
-// function stopGameInterval() {
-//     // intervalle beenden
-//     for (let i = 0; i < intervalIds.length; i++) {
-//         const id = intervalIds[i];
-//         clearInterval(id);
-//     }
-// }
-
-
-
 
 function init() {
     canvas = document.getElementById('canvas');
     lowerVolume();
+    activateTouchBtn();
+
 }
 
 window.addEventListener("keydown", (event) => {
@@ -74,6 +62,40 @@ window.addEventListener("keyup", (event) => {
     }
 })
 
+function activateTouchBtn() {
+    document.getElementById('btnLeft').addEventListener('touchstart', () => {
+        keyboard.LEFT = true;
+    });
+    
+    document.getElementById('btnLeft').addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('btnRight').addEventListener('touchstart', () => {
+        keyboard.RIGHT = true;
+    });
+    
+    document.getElementById('btnRight').addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('btnThrow').addEventListener('touchstart', () => {
+        keyboard.D = true;
+    });
+    
+    document.getElementById('btnThrow').addEventListener('touchend', () => {
+        keyboard.D = false;
+    });
+
+    document.getElementById('btnJump').addEventListener('touchstart', () => {
+        keyboard.SPACE = true;
+    });
+    
+    document.getElementById('btnJump').addEventListener('touchend', () => {
+        keyboard.SPACE = false;
+    });
+}
+
 function startGame() {
     let endscreen = document.getElementById('endScreenWin')
     let game = document.getElementById('start');
@@ -112,11 +134,11 @@ function toggleSound() {
     let img = document.getElementById('gameSound');
     let startScreen = document.getElementById('start');
 
-    if (img.src.includes('/img/10_menu_buttons/sound_on.png')) {
-        img.src = '/img/10_menu_buttons/sound_off.png';
+    if (img.src.includes('img/10_menu_buttons/sound_on.png')) {
+        img.src = 'img/10_menu_buttons/sound_off.png';
         stopAudio();
     } else {
-        img.src = '/img/10_menu_buttons/sound_on.png';
+        img.src = 'img/10_menu_buttons/sound_on.png';
         if (startScreen.classList.contains('dNone')) {
             playAudio();
         }
@@ -166,6 +188,18 @@ function restart() {
     clearAllIntervals();
     startGame();
 }
+
+function checkOrientation() {
+    const warning = document.getElementById('landscapeWarning');
+    if (window.innerWidth < 720) {
+        warning.classList.add('active');
+    } else {
+        warning.classList.remove('active');
+    }
+}
+
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('load', checkOrientation);
 
 
 

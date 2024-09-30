@@ -9,6 +9,16 @@ class Keyboard {
 
 
     constructor() {
+        this.reset();
+    }
 
+    reset() {
+        this.LEFT = false;
+        this.RIGHT = false;
+        this.UP = false;
+        this.DOWN = false;
+        this.SPACE = false;
+        this.THROW = false;
+        this.D = false;
     }
 }

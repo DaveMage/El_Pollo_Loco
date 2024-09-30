@@ -11,7 +11,6 @@ class CollisionHandler {
                 this.checkBottleCollision();
                 this.checkEnemyCollision();
                 this.bottleColliding();
-                // Weitere Kollisionsprüfungen hier hinzufügen
             }
         }, 25);
     }
@@ -21,7 +20,6 @@ class CollisionHandler {
             if (this.world.character.isColliding(coin)) {
                 coin.remove();
                 this.world.level.coins.splice(index, 1);
-                console.log('Collision with Character', coin);
                 this.world.coin_statusbar.setPercentage(this.world.coin_statusbar.percentage += 20);
             }
         });
@@ -32,7 +30,6 @@ class CollisionHandler {
             if (this.world.character.isColliding(bottle)) {
                 bottle.remove();
                 this.world.level.bottle.splice(index, 1);
-                console.log('Collision with Character', bottle);
                 this.world.bottle_statusbar.setPercentage(this.world.bottle_statusbar.percentage += 20);
             }
         });
@@ -48,7 +45,6 @@ class CollisionHandler {
                 } else if (!enemy.isDead) {
                     this.world.character.hit();
                     this.world.statusBar.setPercentage(this.world.character.energy);
-                    console.log('Collision with Character, energy', this.world.character.energy);
                     this.hitTimeout();
                 }
             }
@@ -59,7 +55,7 @@ class CollisionHandler {
         return this.world.character.isAboveGround();
     }
 
-    bottleColliding() {     // evtl auf endboss ummünzen
+    bottleColliding() {     
         this.world.level.enemies.forEach((enemy) => {
             for (let i = 0; i < this.world.throwableObjects.length; i++) {
                 let bottle = this.world.throwableObjects[i];

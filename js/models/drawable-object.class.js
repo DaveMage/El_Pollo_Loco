@@ -13,11 +13,9 @@ class DrawableObject {
         left: 0,
         right: 0,
     }
-
     
-    // loadImage('img/test.png');  -  this.img.src = path;
     loadImage(path) {
-        this.img = new Image();  // ist das selbe wie - this.img = document.getElementById('image')     <img id="image">
+        this.img = new Image();  
         this.img.src = path;
     }
     
@@ -33,14 +31,13 @@ class DrawableObject {
         });
     }
 
-    drawFrame(ctx) {
-        if (this instanceof ThrowableObject || this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || this instanceof Coins || this instanceof Bottle || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
-            ctx.stroke();
-        }
-    }
-
+    // drawFrame(ctx) {         // rectangle dev tool
+    //     if (this) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '0';
+    //         ctx.strokeStyle = 'blue';
+    //         ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
+    //         ctx.stroke();
+    //     }
+    // }
 }

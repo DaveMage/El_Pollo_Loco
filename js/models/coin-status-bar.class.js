@@ -18,7 +18,7 @@ class CoinStatusBar extends DrawableObject {
         this.y = 50;
         this.width = 200;
         this.height = 50;
-        this.setPercentage(100); // % = 0
+        this.setPercentage(0); 
     }
 
     setPercentage(percentage) {

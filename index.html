@@ -8,10 +8,10 @@
     <link rel="icon" type="image/png" href="./img/7_statusbars/3_icons/icon_coin.png">
     <link rel="stylesheet" href="style.css">
     <audio id="buttonAudio">
-        <source src="/audio/buttonClick.mp3" type="audio/mp3">
+        <source src="audio/buttonClick.mp3" type="audio/mp3">
     </audio>
     <audio id="mainAudio">
-        <source src="/audio/maintheme.mp3" type="audio/mp3">
+        <source src="audio/maintheme.mp3" type="audio/mp3">
     </audio>
     <script src="js/models/drawable-object.class.js"></script>
     <script src="js/models/movable-object.class.js"></script>
@@ -41,19 +41,41 @@
 <body onload="init()">
     <!-- Headline -->
     <h1>El Pollo Loco</h1>
-    
+
     <div id="createFullScreen" class="mainScreen">
         <div class="menuBtnBar">
-            <span>
-                <img class="menuBtn" onclick="reload()" src="img/10_menu_buttons/home.png" alt="icon">
-            </span>
-            <span>
-                <img id="gameSound" class="menuBtn" onclick="toggleSound()" src="img/10_menu_buttons/sound_on.png"
-                    alt="icon">
-            </span>
-            <span>
-                <img class="menuBtn" onclick="restart()" src="img/10_menu_buttons/restart.png" alt="">
-            </span>
+            <div class="mobile-nav-button"> <!-- mobile walk -->
+                <span>
+                    <img id="btnLeft" class="menuBtn" src="img/10_menu_buttons/mobile_walk_left.png"
+                        alt="mobileWalkLeft">
+                </span>
+                <span>
+                    <img id="btnRight" class="menuBtn" src="img/10_menu_buttons/mobile_walk_right.png"
+                        alt="mobileWalkRight">
+                </span>
+            </div>
+
+            <div> <!-- normal button section -->
+                <span>
+                    <img class="menuBtn" onclick="reload()" src="img/10_menu_buttons/home.png" alt="icon">
+                </span>
+                <span>
+                    <img id="gameSound" class="menuBtn" onclick="toggleSound()" src="img/10_menu_buttons/sound_on.png"
+                        alt="icon">
+                </span>
+                <span>
+                    <img class="menuBtn" onclick="restart()" src="img/10_menu_buttons/restart.png" alt="">
+                </span>
+            </div>
+
+            <div class="mobile-nav-button"> <!-- mobile jump&throw -->
+                <span>
+                    <img id="btnThrow" class="menuBtn" src="img/10_menu_buttons/mobile_throw.png" alt="mobileThrowBottle">
+                </span>
+                <span>
+                    <img id="btnJump" class="menuBtn" src="img/10_menu_buttons/mobile_jump.png" alt="mobileJump">
+                </span>
+            </div>
         </div>
         <!-- <div>mobile</div> -->
         <div id="start" class="startScreenLayer">
@@ -65,7 +87,7 @@
         <div id="endScreenLose" class="endScreenLayer dNone">
             <img class="startImage" src="img/5_background/second_half_background.png" alt="Background">
             <img class="endScreenImgLose" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="Lose">
-            <button class="MainMenuBtn" onclick="reload()">Try Again!</button> 
+            <button class="MainMenuBtn" onclick="reload()">Try Again!</button>
         </div>
         <!-- win screen -->
         <div id="endScreenWin" class="endScreenLayer dNone">
@@ -124,11 +146,10 @@
         </div>
     </div>
 
-
-
-
-
-
+    <div id="landscapeWarning" class="landscape-warning">
+        <p>Bitte drehen Sie Ihr Gerät.</p>
+        <img src="img/10_menu_buttons/landscape.png" alt="">
+    </div>
 </body>
 
 </html>

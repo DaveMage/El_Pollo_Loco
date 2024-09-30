@@ -23,7 +23,6 @@ class Chicken extends MovableObject {
         Chicken.nextSpawn += 400 +- Math.random() * 600; 
         this.x = 700 + Math.random() * 500;
         this.speed = 0.15 + Math.random() * 0.5;
-
         this.animate();
     }
 
@@ -34,12 +33,11 @@ class Chicken extends MovableObject {
             }
         }, 1000 / 60);
 
-
         setInterval(() => {
             let i = 0;
             if (this.isDead) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.removeAfterDeath(); // Methode zum Entfernen nach dem Tod aufrufen
+                this.removeAfterDeath(); 
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
@@ -48,6 +46,6 @@ class Chicken extends MovableObject {
 
     die() {
         this.isDead = true;
-        this.deathTime = new Date().getTime(); // Todeszeit setzen
+        this.deathTime = new Date().getTime(); 
     }
 }

@@ -32,7 +32,6 @@ class Coins extends MovableObject {
     }
 
     remove() {
-        this.x = -1000; // Münze außerhalb des sichtbaren Bereichs verschieben
+        this.x = -1000; 
     }
-
 }

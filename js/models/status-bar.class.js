@@ -7,13 +7,13 @@ class StatusBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png', // 5
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png', 
     ];
 
     percentage = 100;
 
     constructor() {
-        super();    // hiermit werden die Methoden vom übergeordneten objeckt initialisiert.
+        super();    
         this.loadImages(this.IMAGES_STATUSBAR_HEALTH);
         this.x = 30;
         this.y = 0;
@@ -27,7 +27,6 @@ class StatusBar extends DrawableObject {
         let path = this.IMAGES_STATUSBAR_HEALTH[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
 
     resolveImageIndex() {
 

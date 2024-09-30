@@ -3,7 +3,6 @@ class Endboss extends MovableObject {
     width = 200;
     y = 140;
     hitCount = 3;
-    // speed = 0.20;
     isHit = false;
     toggleAnimation = false;
     firstContact = true;
@@ -66,7 +65,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2400;  // x = 1400
+        this.x = 2600;  
         this.speed = 2.5;
         this.animate();
     }
@@ -97,10 +96,10 @@ class Endboss extends MovableObject {
                 j++
             } else {
                 this.playAnimation(this.IMAGES_DEAD);
-                console.log(j);
                 j++
             }
             i++
+
         }, 250);
 
         setInterval(() => {

@@ -44,17 +44,17 @@ class ThrowableObject extends MovableObject {
     }
 
     remove() {
-        this.x = -1000; // ThrowableObject außerhalb des sichtbaren Bereichs verschieben
+        this.x = -1000; 
     }
 
     bottleSplash(x, y) {       
         this.x = x;
         this.y = y;
-        this.speedY = 0; // Bewegung stoppen
-        this.speedX = 0; // Bewegung stoppen
+        this.speedY = 0; 
+        this.speedX = 0; 
         this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
         setTimeout(() => {
             this.remove();
-        }, 25); // Zeit für die Animation, bevor das Objekt entfernt wird
+        }, 25); 
     }
 }

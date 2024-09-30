@@ -23,7 +23,6 @@ class ChickenSmall extends MovableObject {
         ChickenSmall.nextSpawn += 700 +- Math.random() * 700; 
         this.x = 700 + Math.random() * 500;
         this.speed = 0.2 + Math.random() * 0.5;
-
         this.animate();
     }
 
@@ -38,7 +37,7 @@ class ChickenSmall extends MovableObject {
             let i = 0;
             if (this.isDead) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.removeAfterDeath(); // Methode zum Entfernen nach dem Tod aufrufen
+                this.removeAfterDeath(); 
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
@@ -47,6 +46,6 @@ class ChickenSmall extends MovableObject {
 
     die() {
         this.isDead = true;
-        this.deathTime = new Date().getTime(); // Todeszeit setzen
+        this.deathTime = new Date().getTime(); 
     }
 }
