@@ -31,13 +31,13 @@ class DrawableObject {
         });
     }
 
-    // drawFrame(ctx) {         // rectangle dev tool
-    //     if (this) {
-    //         ctx.beginPath();
-    //         ctx.lineWidth = '0';
-    //         ctx.strokeStyle = 'blue';
-    //         ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
-    //         ctx.stroke();
-    //     }
-    // }
+    drawFrame(ctx) {         // rectangle dev tool
+        if (this) {
+            ctx.beginPath();
+            ctx.lineWidth = '0';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
+            ctx.stroke();
+        }
+    }
 }

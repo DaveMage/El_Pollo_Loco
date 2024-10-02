@@ -6,7 +6,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-image: url(img/Background.png);
+    background-image: url(img/background.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -304,6 +304,53 @@ h4 {
 
 .linkBtn:hover {
     transform: scale(1.1);
+}
+
+/* Impressum */
+
+.Priv-Poli-H1 {
+    font-size: 80px;
+    letter-spacing: 2px;
+}
+
+.Priv-Poli-P {
+    font-size: 26px;
+}
+
+.Priv-Poli-Box {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.Priv-Poli-Margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 660px) {
+    .Priv-Poli-H2 {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .Priv-Poli-add {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    #m46{
+        font-size: 32px;
+    }
+
+    #m56 {
+        font-size: 32px;
+    }
+
+    #m65 {
+        font-size: 32px;
+    }
 }
 
 @font-face {
