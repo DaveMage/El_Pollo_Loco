@@ -1,15 +1,17 @@
 class Character extends MovableObject {
-    y = 70;
+    y = 200;
     speed = 3;
     collectedCoins = 0;
     collectedBottle = 0;
     characterIntervalIds = [];
+    idleTimeout = 5000;
+    lastActionTime = Date.now();
 
     offset = {
         top: 50,
         bottom: 0,
-        left: 0,
-        right: 0,
+        left: 20,
+        right: 23,
     };
 
     IMAGES_WALKING = [
@@ -99,15 +101,18 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
+                this.resetIdleTimer(); 
             }
 
             if (this.world.keyboard.LEFT && this.x > -620) {
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
+                this.resetIdleTimer(); 
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.resetIdleTimer();  
             }
 
             this.world.camera_x = 0 - this.x + 100;
@@ -127,6 +132,10 @@ class Character extends MovableObject {
 
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
+                } else if (Date.now() - this.lastActionTime > this.idleTimeout) {
+                    this.playAnimation(this.IMAGES_IDLE_LONG);
+                } else {
+                    this.playAnimation(this.IMAGES_IDLE);
                 }
             }
         }, 100);
@@ -138,8 +147,13 @@ class Character extends MovableObject {
         }, 100);
     }
 
+    resetIdleTimer() {
+        this.lastActionTime = Date.now();
+    }
+
     jump() {
         this.speedY = 20;
+        this.resetIdleTimer();
     }
 
     characterStopActing() {
@@ -158,6 +172,7 @@ class Character extends MovableObject {
         this.walking_sound.pause();
         this.walking_sound.currentTime = 0;
     }
+
 }
 
 

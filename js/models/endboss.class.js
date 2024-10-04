@@ -11,7 +11,7 @@ class Endboss extends MovableObject {
     defeat = false;
 
     offset = {
-        top: 50,
+        top: -100,
         bottom: 0,
         left: 0,
         right: 0,

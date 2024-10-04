@@ -6,10 +6,10 @@ class Bottle extends MovableObject {
     width = 80;
 
     offset = {
-        top: 5,
+        top: 15,
         bottom: 0,
-        left: 20,
-        right: 0,
+        left: 35,
+        right: 15,
     };
 
     IMAGES_BOTTLE = [

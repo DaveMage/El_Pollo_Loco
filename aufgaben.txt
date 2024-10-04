@@ -35,18 +35,18 @@ sounds:
 
 Feedback
 -Sounds einfügen
--Keine Idle animation
--keine sleep animation
+    -Keine Idle animation -Done
+    -keine sleep animation -Done
 -wenn mute, dann alle sounds mute
 -pepe sackt nach jump zu weit ab
--kollision der objekte passt noch nicht ganz
+    -kollision der objekte passt noch nicht ganz -Done
 -exploid beim boss möglich. mann kann drauf hüpfen
 -boss bar erscheint zu spät. boss erst über abfrage generieren.
 -flasche muss auch nach lnks fliegen
 -pepe ist zu klein
--impressum vollständig ausfüllen -Done
--Datenschutzerklärung mit stylen -Done
--weißen balken vom background entfernen -Done
+    -impressum vollständig ausfüllen -Done
+    -Datenschutzerklärung mit stylen -Done
+    -weißen balken vom background entfernen -Done
 -responsiv läuft nicht richtig
 -kein sterbe bild nach neustart
 -consolenfehler sollten nciht auftreten

@@ -9,8 +9,6 @@ class EndbossHealthBar extends DrawableObject {
 
     percentage = 100;
 
-
-
     constructor() {
         super();    
         this.loadImages(this.IMAGE_BOSS_HEALTH);
