@@ -42,7 +42,7 @@ Feedback
     -kollision der objekte passt noch nicht ganz -Done
 -exploid beim boss möglich. mann kann drauf hüpfen
 -boss bar erscheint zu spät. boss erst über abfrage generieren.
--flasche muss auch nach lnks fliegen
+    -flasche muss auch nach lnks fliegen -Done
 -pepe ist zu klein
     -impressum vollständig ausfüllen -Done
     -Datenschutzerklärung mit stylen -Done

@@ -7,7 +7,6 @@ function init() {
     canvas = document.getElementById('canvas');
     lowerVolume();
     activateTouchBtn();
-
 }
 
 window.addEventListener("keydown", (event) => {
@@ -66,7 +65,7 @@ function activateTouchBtn() {
     document.getElementById('btnLeft').addEventListener('touchstart', () => {
         keyboard.LEFT = true;
     });
-    
+
     document.getElementById('btnLeft').addEventListener('touchend', () => {
         keyboard.LEFT = false;
     });
@@ -74,7 +73,7 @@ function activateTouchBtn() {
     document.getElementById('btnRight').addEventListener('touchstart', () => {
         keyboard.RIGHT = true;
     });
-    
+
     document.getElementById('btnRight').addEventListener('touchend', () => {
         keyboard.RIGHT = false;
     });
@@ -82,7 +81,7 @@ function activateTouchBtn() {
     document.getElementById('btnThrow').addEventListener('touchstart', () => {
         keyboard.D = true;
     });
-    
+
     document.getElementById('btnThrow').addEventListener('touchend', () => {
         keyboard.D = false;
     });
@@ -90,7 +89,7 @@ function activateTouchBtn() {
     document.getElementById('btnJump').addEventListener('touchstart', () => {
         keyboard.SPACE = true;
     });
-    
+
     document.getElementById('btnJump').addEventListener('touchend', () => {
         keyboard.SPACE = false;
     });
