@@ -6,6 +6,7 @@ class Character extends MovableObject {
     characterIntervalIds = [];
     idleTimeout = 5000;
     lastActionTime = Date.now();
+    direction = 'right'; // Standard-Blickrichtung
 
     offset = {
         top: 50,
@@ -99,6 +100,7 @@ class Character extends MovableObject {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
                 this.moveRight();
+                this.direction = 'right'; // Blickrichtung aktualisieren
                 this.otherDirection = false;
                 this.walking_sound.play();
                 this.resetIdleTimer(); 
@@ -106,6 +108,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.LEFT && this.x > -620) {
                 this.moveLeft();
+                this.direction = 'left'; // Blickrichtung aktualisieren
                 this.otherDirection = true;
                 this.walking_sound.play();
                 this.resetIdleTimer(); 

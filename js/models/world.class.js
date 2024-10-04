@@ -48,7 +48,12 @@ class World {
         if (!this.canThrow) return;
 
         if (this.keyboard.D && this.bottle_statusbar.percentage > 0 && this.coin_statusbar.percentage > 0) {
-            let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
+            let bottle;
+            if (this.character.direction === 'right') {
+                bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20, 'right');
+            } else {
+                bottle = new ThrowableObject(this.character.x - 20, this.character.y + 20, 'left');
+            }
             this.throwableObjects.push(bottle);
             this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
             this.coin_statusbar.setPercentage(this.coin_statusbar.percentage -= 20);
@@ -60,6 +65,22 @@ class World {
         }
     }
 
+    // checkThrowObjects() {
+    //     if (!this.canThrow) return;
+
+    //     if (this.keyboard.D && this.bottle_statusbar.percentage > 0 && this.coin_statusbar.percentage > 0) {
+    //         let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
+    //         this.throwableObjects.push(bottle);
+    //         this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
+    //         this.coin_statusbar.setPercentage(this.coin_statusbar.percentage -= 20);
+
+    //         this.canThrow = false;
+    //         setTimeout(() => {
+    //             this.canThrow = true;
+    //         }, 1000);
+    //     }
+    // }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -70,9 +91,9 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.throwableObjects);   
+        this.addObjectsToMap(this.throwableObjects);
 
-        this.ctx.translate(-this.camera_x, 0); 
+        this.ctx.translate(-this.camera_x, 0);
 
         if (this.character.x > 1800 || this.firstContact) {
             this.addToMap(this.endboss_healthbar);
@@ -85,13 +106,13 @@ class World {
             this.addToMap(this.endScreenWin);
         }
 
-        this.ctx.translate(this.camera_x, 0);  
+        this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
-      
+
         let self = this;
-        requestAnimationFrame(function () {     
+        requestAnimationFrame(function () {
             self.draw();
         });
     }
