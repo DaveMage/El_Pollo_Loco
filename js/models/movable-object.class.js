@@ -22,7 +22,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { 
             return true;
         } else {
-            return this.y < 270
+            return this.y < 240     // bis wohin pepe fällt
         }
     }
 

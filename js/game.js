@@ -2,6 +2,9 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let mainTheme = document.getElementById('mainAudio');
+let winAudio = document.getElementById('winAudio');
+let loseAudio = document.getElementById('loseAudio');
+mute = false;
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -127,6 +130,9 @@ function reload() {
     let canvas = document.getElementById('canvas');
     canvas.classList.remove("dBlock");
     stopAudio();
+    clearAllIntervals();
+    loseAudio.pause();
+    winAudio.pause();
 }
 
 function toggleSound() {
@@ -136,10 +142,12 @@ function toggleSound() {
     if (img.src.includes('img/10_menu_buttons/sound_on.png')) {
         img.src = 'img/10_menu_buttons/sound_off.png';
         stopAudio();
+        mute = true;
     } else {
         img.src = 'img/10_menu_buttons/sound_on.png';
         if (startScreen.classList.contains('dNone')) {
             playAudio();
+            mute = false;
         }
     }
 }
@@ -163,11 +171,20 @@ function stopAudio() {
 function showEndScreen() {
     let endscreen = document.getElementById('endScreenWin');
     endscreen.classList.remove("dNone");
+    if (!mute) {
+        winAudio.play();
+    }
+    mainTheme.pause();
+
 }
 
 function showLoseScreen() {
     let loseScreen = document.getElementById('endScreenLose')
     loseScreen.classList.remove("dNone");
+    mainTheme.pause();
+    if (!mute) {
+        loseAudio.play();
+    }
 }
 
 function lowerVolume() {

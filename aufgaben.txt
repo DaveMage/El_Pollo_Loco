@@ -34,19 +34,21 @@ sounds:
     spiel verloren
 
 Feedback
--Sounds einfügen
+-idel sound
+    -Sounds einfügen -Done
     -Keine Idle animation -Done
     -keine sleep animation -Done
--wenn mute, dann alle sounds mute
--pepe sackt nach jump zu weit ab
+    -wenn mute, dann alle sounds mute -Done
+    -pepe sackt nach jump zu weit ab -Done
     -kollision der objekte passt noch nicht ganz -Done
 -exploid beim boss möglich. mann kann drauf hüpfen
 -boss bar erscheint zu spät. boss erst über abfrage generieren.
     -flasche muss auch nach lnks fliegen -Done
--pepe ist zu klein
+    -pepe ist zu klein -Done
     -impressum vollständig ausfüllen -Done
     -Datenschutzerklärung mit stylen -Done
     -weißen balken vom background entfernen -Done
 -responsiv läuft nicht richtig
--kein sterbe bild nach neustart
+    -kein sterbe bild nach neustart -Done
 -consolenfehler sollten nciht auftreten
+-durch den nextspawn bei coins und bottles werden die münzen bei jedem neustart immer weiter hinten gezeigt.

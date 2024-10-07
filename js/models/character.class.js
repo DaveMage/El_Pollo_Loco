@@ -1,6 +1,7 @@
 class Character extends MovableObject {
     y = 200;
     speed = 3;
+    height = 180;
     collectedCoins = 0;
     collectedBottle = 0;
     characterIntervalIds = [];
@@ -81,6 +82,7 @@ class Character extends MovableObject {
     world;
 
     walking_sound = new Audio('audio/walk.mp3');
+    jump_sound = new Audio('audio/jump.mp3');
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
 
@@ -88,8 +90,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_IDLE);              
-        this.loadImages(this.IMAGES_IDLE_LONG);         
+        this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_IDLE_LONG);
         this.applyGravity();
         this.animate();
     }
@@ -102,20 +104,20 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.direction = 'right'; // Blickrichtung aktualisieren
                 this.otherDirection = false;
-                this.walking_sound.play();
-                this.resetIdleTimer(); 
+                this.playWalkingSound();
+                this.resetIdleTimer();
             }
 
             if (this.world.keyboard.LEFT && this.x > -620) {
                 this.moveLeft();
                 this.direction = 'left'; // Blickrichtung aktualisieren
                 this.otherDirection = true;
-                this.walking_sound.play();
-                this.resetIdleTimer(); 
+                this.playWalkingSound();
+                this.resetIdleTimer();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.resetIdleTimer();  
+                this.resetIdleTimer();
             }
 
             this.world.camera_x = 0 - this.x + 100;
@@ -156,6 +158,7 @@ class Character extends MovableObject {
 
     jump() {
         this.speedY = 20;
+        this.playJumpSound();
         this.resetIdleTimer();
     }
 
@@ -174,6 +177,18 @@ class Character extends MovableObject {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
         this.walking_sound.pause();
         this.walking_sound.currentTime = 0;
+    }
+
+    playWalkingSound() {
+        if (!mute) {
+            this.walking_sound.play();
+        }
+    }
+
+    playJumpSound() {
+        if (!mute) {
+            this.jump_sound.play();
+        }
     }
 
 }

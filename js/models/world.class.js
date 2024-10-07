@@ -5,6 +5,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    throw_audio = new Audio('audio/throw.mp3');
     camera_x = -100;
     statusBar = new StatusBar();
     coin_statusbar = new CoinStatusBar();
@@ -51,8 +52,10 @@ class World {
             let bottle;
             if (this.character.direction === 'right') {
                 bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20, 'right');
+                this.playThrowSound();
             } else {
                 bottle = new ThrowableObject(this.character.x - 20, this.character.y + 20, 'left');
+                this.playThrowSound();
             }
             this.throwableObjects.push(bottle);
             this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
@@ -65,21 +68,11 @@ class World {
         }
     }
 
-    // checkThrowObjects() {
-    //     if (!this.canThrow) return;
-
-    //     if (this.keyboard.D && this.bottle_statusbar.percentage > 0 && this.coin_statusbar.percentage > 0) {
-    //         let bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20);
-    //         this.throwableObjects.push(bottle);
-    //         this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
-    //         this.coin_statusbar.setPercentage(this.coin_statusbar.percentage -= 20);
-
-    //         this.canThrow = false;
-    //         setTimeout(() => {
-    //             this.canThrow = true;
-    //         }, 1000);
-    //     }
-    // }
+    playThrowSound() {
+        if (!mute) {
+            this.throw_audio.play();
+        }
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
