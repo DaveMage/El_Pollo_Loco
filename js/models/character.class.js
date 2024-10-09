@@ -1,6 +1,7 @@
 class Character extends MovableObject {
     y = 200;
     speed = 3;
+    speedX = 0;
     height = 180;
     collectedCoins = 0;
     collectedBottle = 0;
@@ -120,6 +121,11 @@ class Character extends MovableObject {
                 this.resetIdleTimer();
             }
 
+
+            // Neue Zeile: Aktualisiere die horizontale Position basierend auf speedX
+            this.x += this.speedX;
+            this.reduceSpeedX(); // Neue Zeile: Reduziere speedX allmählich
+
             this.world.camera_x = 0 - this.x + 100;
         }, 1000 / 60);
 
@@ -191,6 +197,16 @@ class Character extends MovableObject {
         }
     }
 
+    reduceSpeedX() {
+        if (this.speedX > 0) {
+            this.speedX -= 1;
+        } else if (this.speedX < 0) {
+            this.speedX += 1;
+        }
+        if (Math.abs(this.speedX) < 1) {
+            this.speedX = 0;
+        }
+    }
 }
 
 

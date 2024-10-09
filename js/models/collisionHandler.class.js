@@ -62,6 +62,8 @@ class CollisionHandler {
                     this.world.character.playJumpSound();                  
                     this.hitTimeout();
                 } else if (!enemy.isDead) {
+                    this.world.character.speedY = 10;
+                    this.world.character.speedX = this.world.character.direction === 'right' ? -20 : 20;
                     this.world.character.hit();
                     this.playHitSound();
                     this.world.statusBar.setPercentage(this.world.character.energy);
