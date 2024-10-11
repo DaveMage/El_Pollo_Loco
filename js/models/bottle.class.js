@@ -21,7 +21,8 @@ class Bottle extends MovableObject {
         super().loadImage('img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
         this.loadImages(this.IMAGES_BOTTLE);
         this.x = Bottle.nextSpawn;
-        Bottle.nextSpawn += 300 +- Math.random() * 200; 
+        Bottle.updateNextSpawn(300, 200); 
+        // Bottle.nextSpawn += 300 +- Math.random() * 200; 
     }
 
     remove() {

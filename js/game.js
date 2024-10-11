@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 let mainTheme = document.getElementById('mainAudio');
 let winAudio = document.getElementById('winAudio');
 let loseAudio = document.getElementById('loseAudio');
+bossFirstSeen = false;
 mute = false;
 
 function init() {
@@ -106,6 +107,8 @@ function startGame() {
     let canvas = document.getElementById('canvas');
     canvas.classList.add("dBlock");
     initLevel();
+    Coins.resetNextSpawn(); // Reset Coins nextSpawn
+    Bottle.resetNextSpawn(); // Reset Bottle nextSpawn
     world = new World(canvas, keyboard);
     checkAudioStatus();
 }
@@ -129,10 +132,13 @@ function reload() {
     game.classList.remove("dNone");
     let canvas = document.getElementById('canvas');
     canvas.classList.remove("dBlock");
+    bossFirstSeen = false;
     stopAudio();
     clearAllIntervals();
     loseAudio.pause();
     winAudio.pause();
+    Coins.resetNextSpawn(); // Reset Coins nextSpawn
+    Bottle.resetNextSpawn(); // Reset Bottle nextSpawn
 }
 
 function toggleSound() {
@@ -203,19 +209,20 @@ function clearAllIntervals() {
 function restart() {
     clearAllIntervals();
     startGame();
+    bossFirstSeen = false;
 }
 
-function checkOrientation() {
-    const warning = document.getElementById('landscapeWarning');
-    if (window.innerWidth < 720) {
-        warning.classList.add('active');
-    } else {
-        warning.classList.remove('active');
-    }
-}
+// function checkOrientation() {
+//     const warning = document.getElementById('landscapeWarning');
+//     if (window.innerWidth < 720) {
+//         warning.classList.add('active');
+//     } else {
+//         warning.classList.remove('active');
+//     }
+// }
 
-window.addEventListener('resize', checkOrientation);
-window.addEventListener('load', checkOrientation);
+// window.addEventListener('resize', checkOrientation);
+// window.addEventListener('load', checkOrientation);
 
 
 

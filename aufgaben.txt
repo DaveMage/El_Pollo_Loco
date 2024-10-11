@@ -41,8 +41,8 @@ Feedback
     -wenn mute, dann alle sounds mute -Done
     -pepe sackt nach jump zu weit ab -Done
     -kollision der objekte passt noch nicht ganz -Done
--exploid beim boss möglich. mann kann drauf hüpfen
--boss bar erscheint zu spät. boss erst über abfrage generieren.
+    -exploid beim boss möglich. mann kann drauf hüpfen -Done
+    -boss bar erscheint zu spät. boss erst über abfrage generieren. -Done
     -flasche muss auch nach lnks fliegen -Done
     -pepe ist zu klein -Done
     -impressum vollständig ausfüllen -Done
@@ -51,4 +51,8 @@ Feedback
 -responsiv läuft nicht richtig
     -kein sterbe bild nach neustart -Done
 -consolenfehler sollten nciht auftreten
--durch den nextspawn bei coins und bottles werden die münzen bei jedem neustart immer weiter hinten gezeigt.
+    -durch den nextspawn bei coins und bottles werden die münzen bei jedem neustart immer weiter hinten gezeigt. -Done
+
+responsiv
+
+-impressum anpassen

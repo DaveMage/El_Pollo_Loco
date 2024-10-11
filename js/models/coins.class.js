@@ -21,7 +21,8 @@ class Coins extends MovableObject {
         super().loadImage('img/8_coin/coin_1.png')
         this.loadImages(this.IMAGES_COIN);
         this.x = Coins.nextSpawn;
-        Coins.nextSpawn += 300 +- Math.random() * 200; 
+        Coins.updateNextSpawn(300, 200); 
+        // Coins.nextSpawn += 300 +- Math.random() * 200; 
         this.animate();
     }
 

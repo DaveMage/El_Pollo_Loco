@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     collisionDetected = false;
     endbossIsDeafeat = false;
     deathTime = null;
+    static nextSpawn = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -79,6 +80,14 @@ class MovableObject extends DrawableObject {
 
     remove() {
         this.x = -1000;
+    }
+
+    static resetNextSpawn() {
+        this.nextSpawn = 300;
+    }
+
+    static updateNextSpawn(baseValue, randomRange) {
+        this.nextSpawn += baseValue - Math.random() * randomRange;
     }
 }
 

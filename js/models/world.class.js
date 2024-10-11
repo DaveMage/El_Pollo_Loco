@@ -1,6 +1,7 @@
 class World {
     character = new Character();
-    endboss = new Endboss();
+    // endboss; // Endboss wird später initialisiert
+    endboss = new Endboss(this);
     level = level1;
     canvas;
     ctx;
@@ -16,13 +17,18 @@ class World {
     collisionHandler;
     canThrow = true;
     firstContact = false;
+    // characterPassedThreshold = false; // Neuer boolescher Wert
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.collisionHandler = new CollisionHandler(this);
+        
+        this.character.world = this; // Setze die world-Eigenschaft des Charakters
+        // this.endboss = new Endboss(this); // Übergibt die world-Instanz an den Endboss
         this.draw();
+
         this.setWorld();
         this.run();
     }
@@ -38,11 +44,25 @@ class World {
         this.coin_statusbar.setPercentage(percentage);
     }
 
+    // checkCharacterPosition() {
+    //     if (this.character.x > 1500 || this.characterPassedThreshold) { // Passe den Wert 500 nach Bedarf an
+    //         this.characterPassedThreshold = true;
+    //     }
+    // }
+
     run() {
         setInterval(() => {
             this.collisionHandler.checkCollisions();
             this.checkThrowObjects();
+            this.checkFirstContact();
         }, 200);
+    }
+
+    checkFirstContact() {
+        if (this.character.x > 2000) {
+            bossFirstSeen = true;    
+        }
+        console.log('Boss first seen is', bossFirstSeen);
     }
 
     checkThrowObjects() {
@@ -88,7 +108,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        if (this.character.x > 1800 || this.firstContact) {
+        if (this.character.x > 2000 || this.firstContact) {
             this.addToMap(this.endboss_healthbar);
             this.firstContact = true;
         }

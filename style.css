@@ -68,24 +68,7 @@ body {
     top: 416px;
 }
 
-@media screen and (max-width: 719px) {
-    .menuBtnBar {
-        width: inherit;
-        display: flex;
-        justify-content: space-between;
-        margin: 0;
-    }
 
-    .menuBtn {
-        margin-right: 8px;
-    }
-}
-
-@media screen and (min-width: 719px) {
-    .mobile-nav-button {
-        display: none;
-    }
-}
 
 .landscape-warning {
     display: none;
@@ -286,6 +269,21 @@ h4 {
     margin-bottom: 16px;
 }
 
+canvas {
+    background-color: black;
+    display: none;
+}
+
+/* mobile */
+
+.mobile-nav-button {
+    display: none;
+}
+
+/* mobile */
+
+
+
 .closeBtn {
     cursor: pointer;
     position: relative;
@@ -327,32 +325,6 @@ h4 {
     margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 660px) {
-    .Priv-Poli-H2 {
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-
-    .Priv-Poli-add {
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-}
-
-@media only screen and (max-width: 430px) {
-    #m46{
-        font-size: 32px;
-    }
-
-    #m56 {
-        font-size: 32px;
-    }
-
-    #m65 {
-        font-size: 32px;
-    }
-}
-
 @font-face {
     font-family: 'zabras';
     src: url(./fonts/Zabars.ttf);
@@ -363,12 +335,7 @@ h4 {
     src: url(./fonts/Roboto-Regular.ttf);
 }
 
-canvas {
-    background-color: black;
-    display: none;
-}
-
-@media only screen and (max-width: 720px) {
+/* @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
     }
@@ -398,6 +365,7 @@ canvas {
 
     .mainScreen {
         height: 100vh;
+        width: auto;
     }
 
     body {
@@ -411,4 +379,83 @@ canvas {
     .menuBtnBar {
         top: 84vh;
     }
+} */
+
+@media only screen and (max-width: 660px) {
+    .Priv-Poli-H2 {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .Priv-Poli-add {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 }
+
+@media only screen and (max-width: 430px) {
+    #m46 {
+        font-size: 32px;
+    }
+
+    #m56 {
+        font-size: 32px;
+    }
+
+    #m65 {
+        font-size: 32px;
+    }
+}
+
+/* @media only screen and (orientation: portrait) and (max-width: 1030px) {
+    .landscape-warning {
+        display: flex;
+    }
+} */
+
+/* @media only screen and (orientation: landscape) and (min-width: 950px) {
+    .mobile-nav-button {
+        display: block;
+    }
+} */
+
+/* @media screen and (max-width: 719px) {
+
+
+    .menuBtnBar {
+        width: inherit;
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        width: 95vw;
+    }
+
+    .menuBtn {
+        margin-right: 8px;
+    }
+
+    .startImage {
+        width: 100vw;
+    }
+
+    .startScreenLayer {
+        width: 100vw;
+    }
+} */
+
+/* @media (min-width: 720px) { /* 720px und mehr werden knöpfe ausgeschaltet
+    .mobile-nav-button {
+        display: none;
+    }
+} */
+
+
+/* hiermit entferne ich den footer ausm handy bereich */
+@media only screen and (orientation: landscape) {   
+    .lowerGameSection {
+        display: none;
+    }
+}
+
+
+

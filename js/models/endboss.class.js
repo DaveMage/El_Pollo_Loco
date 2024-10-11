@@ -58,8 +58,9 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
 
-    constructor() {
+    constructor(world) {
         super().loadImage(this.IMAGES_ALERT[0]);
+        this.world = world; // Speichert die world-Instanz
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_ATTACK);
@@ -74,6 +75,7 @@ class Endboss extends MovableObject {
         let j = 0
         let i = 0
         setInterval(() => {
+            if (bossFirstSeen) {
             if (this.energy > 0) {
                 if (this.isHit) {
                     this.playAnimation(this.IMAGES_HURT);
@@ -99,7 +101,7 @@ class Endboss extends MovableObject {
                 j++
             }
             i++
-
+        }
         }, 250);
 
         setInterval(() => {
