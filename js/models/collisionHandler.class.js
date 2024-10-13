@@ -1,13 +1,23 @@
+/**
+ * Class for handling collisions in the game.
+ */
 class CollisionHandler {
     hit_audio = new Audio('audio/hurt.mp3');
     bottle_break = new Audio('audio/bottle_break.mp3');
     collecting_sound = new Audio('audio/collected_item.mp3');
 
+    /**
+     * Constructor for creating a CollisionHandler.
+     * @param {object} world - The game world.
+     */
     constructor(world) {
         this.world = world;
         this.collisionDetected = false;
     }
 
+    /**
+     * Checks for various collisions at regular intervals.
+     */
     checkCollisions() {
         setInterval(() => {
             if (!this.collisionDetected) {
@@ -19,18 +29,27 @@ class CollisionHandler {
         }, 25);
     }
 
+    /**
+     * Plays the collecting sound if not muted.
+     */
     playCollectingSound() {
         if (!mute) {
            this.collecting_sound.play();
         }
     }
 
+    /**
+     * Plays the hit sound if not muted.
+     */
     playHitSound() {
         if (!mute) {
             this.hit_audio.play();
         }
     }
 
+    /**
+     * Checks for collisions between the character and coins.
+     */
     checkCoinCollision() {
         this.world.level.coins.forEach((coin, index) => {
             if (this.world.character.isColliding(coin)) {
@@ -42,6 +61,9 @@ class CollisionHandler {
         });
     }
 
+    /**
+     * Checks for collisions between the character and bottles.
+     */
     checkBottleCollision() {
         this.world.level.bottle.forEach((bottle, index) => {
             if (this.world.character.isColliding(bottle)) {
@@ -53,6 +75,9 @@ class CollisionHandler {
         });
     }
 
+    /**
+     * Checks for collisions between the character and enemies.
+     */
     checkEnemyCollision() {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy) && !this.collisionDetected) {
@@ -73,10 +98,17 @@ class CollisionHandler {
         });
     }
 
+    /**
+     * Checks if the character is falling.
+     * @returns {boolean} - True if the character is above ground.
+     */
     isFalling() {
         return this.world.character.isAboveGround();
     }
 
+    /**
+     * Checks for collisions between throwable bottles and enemies.
+     */
     bottleColliding() {     
         this.world.level.enemies.forEach((enemy) => {
             for (let i = 0; i < this.world.throwableObjects.length; i++) {
@@ -99,12 +131,18 @@ class CollisionHandler {
         });
     }
 
+    /**
+     * Plays the bottle break sound if not muted.
+     */
     bottleBreakSound() {
         if (!mute) {
             this.bottle_break.play();
         }
     }
 
+    /**
+     * Sets a timeout to prevent multiple collisions in quick succession.
+     */
     hitTimeout() {
         this.collisionDetected = true;
         setTimeout(() => {

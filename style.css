@@ -68,8 +68,6 @@ body {
     top: 416px;
 }
 
-
-
 .landscape-warning {
     display: none;
     position: fixed;
@@ -270,23 +268,9 @@ canvas {
     display: none;
 }
 
-/* Canvas-Stile für mobile Geräte */
-@media only screen and (max-width: 768px) {
-    canvas {
-        width: 100vw;
-        height: 100vh;
-    }
-}
-
-/* mobile */
-
 .mobile-nav-button {
     display: none;
 }
-
-/* mobile */
-
-
 
 .closeBtn {
     cursor: pointer;
@@ -308,8 +292,6 @@ canvas {
     transform: scale(1.1);
 }
 
-/* Impressum */
-
 .Priv-Poli-H1 {
     font-size: 80px;
     letter-spacing: 2px;
@@ -327,6 +309,107 @@ canvas {
 .Priv-Poli-Margin {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+body.mobile {
+    overflow: hidden; 
+}
+
+body.mobile .mainScreen {
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden; 
+}
+
+body.mobile .menuBtnBar {
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    width: 95vw;
+    position: absolute;
+    top: 85%;
+}
+
+body.mobile .menuBtn {
+    margin-right: 8px;
+}
+
+body.mobile .startImage {
+    width: 100vw;
+    height: auto; 
+}
+
+body.mobile .startScreenLayer {
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+body.mobile .lowerGameSection {
+    display: none;
+}
+
+body.mobile .mobile-nav-button {
+    display: block;
+}
+
+body.mobile canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+body.mobile .endScreenLayer {
+    width: 100vw;
+    height: 100vh;
+}
+
+body.mobile .MainMenuBtn {
+    top: 75%;
+}
+
+body.mobile .endScreenImgLose {
+    width: 100vw;
+    height: 100vh;
+}
+
+body.mobile #impressum {
+    overflow-y: auto; 
+    max-height: 100vh; 
+    padding: 20px; 
+    box-sizing: border-box; 
+}
+
+body.desktop .mainScreen {
+    width: 720px;
+    height: 480px;
+}
+
+body.desktop .menuBtnBar {
+    margin-left: 460px;
+    position: absolute;
+    z-index: 1;
+    top: 416px;
+}
+
+body.desktop .lowerGameSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    canvas {
+        width: 100vw;
+        height: 100vh;
+    }
 }
 
 @font-face {
@@ -363,98 +446,5 @@ canvas {
     #m65 {
         font-size: 32px;
     }
-}
-
-
-/* Mobile Stile */
-body.mobile {
-    overflow: hidden; /* Verhindert Scrollbalken im mobilen Modus */
-}
-
-body.mobile .mainScreen {
-    width: 100vw;
-    height: 100vh; /* Passt die Höhe an die Bildschirmhöhe an */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Zentriert den Inhalt vertikal */
-    align-items: center; /* Zentriert den Inhalt horizontal */
-    overflow: hidden; /* Verhindert Scrollbalken innerhalb des Containers */
-}
-
-body.mobile .menuBtnBar {
-    width: inherit;
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    width: 95vw;
-    position: absolute;
-    top: 85%; /* Positioniert die Knöpfe am unteren Rand */
-}
-
-body.mobile .menuBtn {
-    margin-right: 8px;
-}
-
-body.mobile .startImage {
-    width: 100vw;
-    height: auto; /* Beibehaltung des Seitenverhältnisses */
-}
-
-body.mobile .startScreenLayer {
-    width: 100vw;
-    height: 100vh; /* Passt die Höhe an die Bildschirmhöhe an */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Zentriert den Inhalt vertikal */
-    align-items: center; /* Zentriert den Inhalt horizontal */
-}
-
-body.mobile .lowerGameSection {
-    display: none;
-}
-
-body.mobile .mobile-nav-button {
-    display: block;
-}
-
-body.mobile canvas {
-    width: 100vw;
-    height: 100vh;
-}
-
-body.mobile .endScreenLayer {
-    width: 100vw;
-    height: 100vh;
-}
-
-body.mobile .MainMenuBtn {
-    top: 75%;
-}
-
-body.mobile .endScreenImgLose {
-    width: 100vw;
-    height: 100vh;
-}
-
-
-
-
-/* Desktop Stile */
-body.desktop .mainScreen {
-    width: 720px;
-    height: 480px;
-}
-
-body.desktop .menuBtnBar {
-    margin-left: 460px;
-    position: absolute;
-    z-index: 1;
-    top: 416px;
-}
-
-body.desktop .lowerGameSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 

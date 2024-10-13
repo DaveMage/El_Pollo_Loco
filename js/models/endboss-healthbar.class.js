@@ -1,3 +1,6 @@
+/**
+ * Class for the end boss health bar that inherits from DrawableObject.
+ */
 class EndbossHealthBar extends DrawableObject {
 
     IMAGE_BOSS_HEALTH = [
@@ -9,6 +12,9 @@ class EndbossHealthBar extends DrawableObject {
 
     percentage = 100;
 
+    /**
+     * Constructor for creating an end boss health bar.
+     */
     constructor() {
         super();    
         this.loadImages(this.IMAGE_BOSS_HEALTH);
@@ -19,12 +25,20 @@ class EndbossHealthBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+     * Sets the percentage of the end boss health bar and updates the image.
+     * @param {number} percentage - The new percentage.
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGE_BOSS_HEALTH[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Determines the index of the image based on the current percentage.
+     * @returns {number} - The index of the image in the IMAGE_BOSS_HEALTH array.
+     */
     resolveImageIndex() {
 
         if (this.percentage == 100) {

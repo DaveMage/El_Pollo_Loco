@@ -42,9 +42,6 @@
 </head>
 
 <body onload="init()">
-    <!-- Headline
-    <h1>El Pollo Loco</h1> -->
-
     <div id="createFullScreen" class="mainScreen">
         <div class="menuBtnBar">
             <div class="mobile-nav-button"> <!-- mobile walk -->
@@ -71,7 +68,10 @@
                 </span>
             </div>
 
-            <div class="mobile-nav-button"> <!-- mobile jump&throw -->
+            <div class="mobile-nav-button"> <!-- mobile jump,throw & privacy/policy -->
+                <span>
+                    <img id="btnThrow" class="menuBtn" src="img/10_menu_buttons/info.png" onclick="openImpressum()" alt="privacy-policy">
+                </span>
                 <span>
                     <img id="btnThrow" class="menuBtn" src="img/10_menu_buttons/mobile_throw.png" alt="mobileThrowBottle">
                 </span>

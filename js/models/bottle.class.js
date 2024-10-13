@@ -1,3 +1,6 @@
+/**
+ * Class for bottle objects that inherit from MovableObject.
+ */
 class Bottle extends MovableObject {
     static nextSpawn = 450;
     x = 50;
@@ -17,14 +20,19 @@ class Bottle extends MovableObject {
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
     ];
 
+    /**
+     * Constructor for creating a bottle.
+     */
     constructor() {
         super().loadImage('img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
         this.loadImages(this.IMAGES_BOTTLE);
         this.x = Bottle.nextSpawn;
         Bottle.updateNextSpawn(300, 200); 
-        // Bottle.nextSpawn += 300 +- Math.random() * 200; 
     }
 
+    /**
+     * Removes the bottle by setting the X-coordinate far outside the visible area.
+     */
     remove() {
         this.x = -1000; 
     }

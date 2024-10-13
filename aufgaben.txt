@@ -29,12 +29,10 @@ sounds:
     pepe wird verletzt
     endboss wird getroffen
     endboss stirb
-    endboss spawnt
     spiel gewonnen
     spiel verloren
 
 Feedback
--idel sound
     -Sounds einfügen -Done
     -Keine Idle animation -Done
     -keine sleep animation -Done
@@ -48,11 +46,7 @@ Feedback
     -impressum vollständig ausfüllen -Done
     -Datenschutzerklärung mit stylen -Done
     -weißen balken vom background entfernen -Done
--responsiv läuft nicht richtig
+    -responsiv läuft nicht richtig -Done
     -kein sterbe bild nach neustart -Done
--consolenfehler sollten nciht auftreten
+    -consolenfehler sollten nciht auftreten -Done
     -durch den nextspawn bei coins und bottles werden die münzen bei jedem neustart immer weiter hinten gezeigt. -Done
-
-responsiv
-
--impressum anpassen

@@ -1,6 +1,8 @@
+/**
+ * Class representing the game world.
+ */
 class World {
     character = new Character();
-    // endboss; // Endboss wird später initialisiert
     endboss = new Endboss(this);
     level = level1;
     canvas;
@@ -17,39 +19,43 @@ class World {
     collisionHandler;
     canThrow = true;
     firstContact = false;
-    // characterPassedThreshold = false; // Neuer boolescher Wert
 
+    /**
+     * Constructor for creating the game world.
+     * @param {HTMLCanvasElement} canvas - The canvas element.
+     * @param {Keyboard} keyboard - The keyboard input handler.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.collisionHandler = new CollisionHandler(this);
-        
-        this.character.world = this; // Setze die world-Eigenschaft des Charakters
-        // this.endboss = new Endboss(this); // Übergibt die world-Instanz an den Endboss
+        this.collisionHandler = new CollisionHandler(this);       
+        this.character.world = this; 
         this.draw();
-
         this.setWorld();
         this.run();
     }
 
+    /**
+     * Sets the world reference for the character and end boss.
+     */
     setWorld() {
         this.character.world = this;
         this.endboss.world = this;
     }
 
+    /**
+     * Updates the coin status bar based on the collected coins.
+     */
     updateCoinStatusBar() {
         let collectedCoins = this.level.totalCoins - this.level.coins.length;
         let percentage = (collectedCoins / this.level.totalCoins) * 100;
         this.coin_statusbar.setPercentage(percentage);
     }
 
-    // checkCharacterPosition() {
-    //     if (this.character.x > 1500 || this.characterPassedThreshold) { // Passe den Wert 500 nach Bedarf an
-    //         this.characterPassedThreshold = true;
-    //     }
-    // }
-
+    /**
+     * Runs the game loop, checking for collisions and other events.
+     */
     run() {
         setInterval(() => {
             this.collisionHandler.checkCollisions();
@@ -58,13 +64,18 @@ class World {
         }, 200);
     }
 
+    /**
+     * Checks if the character has made first contact with the end boss.
+     */
     checkFirstContact() {
         if (this.character.x > 1600) {
             bossFirstSeen = true;    
         }
-        console.log('Boss first seen is', bossFirstSeen);
     }
 
+    /**
+     * Checks if the character can throw objects and handles the throwing logic.
+     */
     checkThrowObjects() {
         if (!this.canThrow) return;
 
@@ -88,12 +99,18 @@ class World {
         }
     }
 
+    /**
+     * Plays the throwing sound if not muted.
+     */
     playThrowSound() {
         if (!mute) {
             this.throw_audio.play();
         }
     }
 
+    /**
+     * Draws the game world and its objects on the canvas.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -130,24 +147,36 @@ class World {
         });
     }
 
+    /**
+     * Adds multiple objects to the map.
+     * @param {Array} objects - Array of objects to add to the map.
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * Adds a single object to the map.
+     * @param {MovableObject} movableObject - The object to add to the map.
+     */
     addToMap(movableObject) {
 
         if (movableObject.otherDirection) {
             this.flipImage(movableObject);
         }
         movableObject.draw(this.ctx);
-        movableObject.drawFrame(this.ctx);
+        // movableObject.drawFrame(this.ctx);   Dev tool to show the hitbox
         if (movableObject.otherDirection) {
             this.flipImageBack(movableObject);
         }
     }
 
+    /**
+     * Flips the image of an object horizontally.
+     * @param {MovableObject} movableObject - The object to flip.
+     */
     flipImage(movableObject) {
         this.ctx.save();
         this.ctx.translate(movableObject.width, 0);
@@ -155,6 +184,10 @@ class World {
         movableObject.x = movableObject.x * -1;
     }
 
+    /**
+     * Flips the image of an object back to its original orientation.
+     * @param {MovableObject} movableObject - The object to flip back.
+     */
     flipImageBack(movableObject) {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();

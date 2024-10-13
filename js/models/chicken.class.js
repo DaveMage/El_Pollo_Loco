@@ -1,3 +1,6 @@
+/**
+ * Class for normal chicken enemies that inherit from MovableObject.
+ */
 class Chicken extends MovableObject {
     static nextSpawn = 700; 
     y = 360;
@@ -15,6 +18,9 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
+    /**
+     * Constructor for creating a chicken.
+     */
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -26,6 +32,9 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the chicken by setting up intervals for movement and animation.
+     */
     animate() {
         setInterval(() => {
             if (!this.isDead) {
@@ -44,6 +53,9 @@ class Chicken extends MovableObject {
         }, 150);
     }
 
+    /**
+     * Marks the chicken as dead and records the death time.
+     */
     die() {
         this.isDead = true;
         this.deathTime = new Date().getTime(); 

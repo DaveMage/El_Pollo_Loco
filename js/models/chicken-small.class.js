@@ -1,3 +1,6 @@
+/**
+ * Class for small chicken enemies that inherit from MovableObject.
+ */
 class ChickenSmall extends MovableObject {
     static nextSpawn = 900; 
     y = 370;
@@ -15,6 +18,9 @@ class ChickenSmall extends MovableObject {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
+    /**
+     * Constructor for creating a small chicken.
+     */
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -26,6 +32,9 @@ class ChickenSmall extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the small chicken by setting up intervals for movement and animation.
+     */
     animate() {
         setInterval(() => {
             if (!this.isDead) {
@@ -44,6 +53,9 @@ class ChickenSmall extends MovableObject {
         }, 150);
     }
 
+    /**
+     * Marks the small chicken as dead and records the death time.
+     */
     die() {
         this.isDead = true;
         this.deathTime = new Date().getTime(); 

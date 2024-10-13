@@ -1,3 +1,6 @@
+/**
+ * Class for coin objects that inherit from MovableObject.
+ */
 class Coins extends MovableObject {
     static nextSpawn = 300; 
     x = 100;
@@ -17,21 +20,29 @@ class Coins extends MovableObject {
         'img/8_coin/coin_2.png',
     ];
 
+    /**
+     * Constructor for creating a coin.
+     */
     constructor() {
         super().loadImage('img/8_coin/coin_1.png')
         this.loadImages(this.IMAGES_COIN);
         this.x = Coins.nextSpawn;
         Coins.updateNextSpawn(300, 200); 
-        // Coins.nextSpawn += 300 +- Math.random() * 200; 
         this.animate();
     }
 
+    /**
+     * Animates the coin by playing the coin animation at a constant interval.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);
         }, 700);
     }
 
+    /**
+     * Removes the coin by setting the X-coordinate far outside the visible area.
+     */
     remove() {
         this.x = -1000; 
     }

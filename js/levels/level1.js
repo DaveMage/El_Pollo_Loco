@@ -1,6 +1,8 @@
 let level1;
 
-
+/**
+ * Initializes the level with all necessary objects.
+ */
 function initLevel() {
 
     level1 = new Level(
@@ -52,5 +54,4 @@ function initLevel() {
         new EndscreenWin
     ],
     );
-
 }

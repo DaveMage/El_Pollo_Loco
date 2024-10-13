@@ -7,6 +7,9 @@ let loseAudio = document.getElementById('loseAudio');
 bossFirstSeen = false;
 mute = false;
 
+/**
+ * Initializes the game by setting up the canvas, lowering the volume, and activating touch buttons.
+ */
 function init() {
     canvas = document.getElementById('canvas');
     lowerVolume();
@@ -65,6 +68,9 @@ window.addEventListener("keyup", (event) => {
     }
 })
 
+/**
+ * Activates touch buttons for mobile devices.
+ */
 function activateTouchBtn() {
     document.getElementById('btnLeft').addEventListener('touchstart', () => {
         keyboard.LEFT = true;
@@ -99,6 +105,9 @@ function activateTouchBtn() {
     });
 }
 
+/**
+ * Starts the game by initializing the level and creating the game world.
+ */
 function startGame() {
     let endscreen = document.getElementById('endScreenWin')
     let game = document.getElementById('start');
@@ -107,22 +116,31 @@ function startGame() {
     let canvas = document.getElementById('canvas');
     canvas.classList.add("dBlock");
     initLevel();
-    Coins.resetNextSpawn(); // Reset Coins nextSpawn
-    Bottle.resetNextSpawn(); // Reset Bottle nextSpawn
+    Coins.resetNextSpawn(); 
+    Bottle.resetNextSpawn();
     world = new World(canvas, keyboard);
     checkAudioStatus();
 }
 
+/**
+ * Closes the impressum (legal notice) section.
+ */
 function closeImpressum() {
     let impressum = document.getElementById('impressum');
     impressum.classList.add('dNone');
 }
 
+/**
+ * Opens the impressum (legal notice) section.
+ */
 function openImpressum() {
     let impressum = document.getElementById('impressum');
     impressum.classList.remove('dNone');
 }
 
+/**
+ * Reloads the game by resetting the game state and stopping all audio and intervals.
+ */
 function reload() {
     let endscreen = document.getElementById('endScreenWin');
     let endscreenLose = document.getElementById('endScreenLose');
@@ -137,10 +155,13 @@ function reload() {
     clearAllIntervals();
     loseAudio.pause();
     winAudio.pause();
-    Coins.resetNextSpawn(); // Reset Coins nextSpawn
-    Bottle.resetNextSpawn(); // Reset Bottle nextSpawn
+    Coins.resetNextSpawn(); 
+    Bottle.resetNextSpawn(); 
 }
 
+/**
+ * Toggles the game sound on and off.
+ */
 function toggleSound() {
     let img = document.getElementById('gameSound');
     let startScreen = document.getElementById('start');
@@ -158,6 +179,9 @@ function toggleSound() {
     }
 }
 
+/**
+ * Checks the audio status and plays the main theme if sound is enabled.
+ */
 function checkAudioStatus() {
     let audio = document.getElementById('gameSound');
     if (audio.src.includes('/img/10_menu_buttons/sound_on.png')) {
@@ -165,15 +189,24 @@ function checkAudioStatus() {
     }
 }
 
+/**
+ * Plays the main theme audio.
+ */
 function playAudio() {
     mainTheme.play();
 }
 
+/**
+ * Stops the main theme audio and resets its playback position.
+ */
 function stopAudio() {
     mainTheme.pause();
     mainTheme.currentTime = 0;
 }
 
+/**
+ * Shows the end screen when the player wins.
+ */
 function showEndScreen() {
     let endscreen = document.getElementById('endScreenWin');
     endscreen.classList.remove("dNone");
@@ -181,9 +214,11 @@ function showEndScreen() {
         winAudio.play();
     }
     mainTheme.pause();
-
 }
 
+/**
+ * Shows the lose screen when the player loses.
+ */
 function showLoseScreen() {
     let loseScreen = document.getElementById('endScreenLose')
     loseScreen.classList.remove("dNone");
@@ -193,47 +228,70 @@ function showLoseScreen() {
     }
 }
 
+/**
+ * Lowers the volume of the main theme audio.
+ */
 function lowerVolume() {
     let audio = document.getElementById('mainAudio');
     audio.volume = 0.3;
 }
 
+/**
+ * Plays the button click sound.
+ */
 function playButtonAudio() {
     buttonSound.play();
 }
 
+/**
+ * Clears all active intervals.
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
+/**
+ * Restarts the game by clearing all intervals and starting the game again.
+ */
 function restart() {
     clearAllIntervals();
     startGame();
     bossFirstSeen = false;
 }
 
+/**
+ * Checks if the device is a mobile device.
+ * @returns {boolean} - True if the device is a mobile device.
+ */
 function isMobileDevice() {
     return /Mobi|Android/i.test(navigator.userAgent);
 }
 
+/**
+ * Applies mobile-specific styles to the game.
+ */
 function applyMobileStyles() {
     document.body.classList.add('mobile');
     document.body.classList.remove('desktop');
 }
 
+/**
+ * Applies desktop-specific styles to the game.
+ */
 function applyDesktopStyles() {
     document.body.classList.add('desktop');
     document.body.classList.remove('mobile');
 }
 
+/**
+ * Checks the device orientation and shows a warning if in portrait mode.
+ */
 function checkOrientation() {
     const landscapeWarning = document.querySelector('.landscape-warning');
     if (landscapeWarning) {
         if (window.orientation === 0 || window.orientation === 180) {
-            // Hochformat (Portrait)
             landscapeWarning.classList.add('active');
         } else {
-            // Querformat (Landscape)
             landscapeWarning.classList.remove('active');
         }
     }
@@ -241,15 +299,21 @@ function checkOrientation() {
 
 window.addEventListener('load', () => {
     if (isMobileDevice()) {
-        console.log("Die App wird auf einem mobilen Gerät geöffnet.");
+        console.log("Die App wird auf einem mobilen Gerät geöffnet. Dient nur zur übersicht bei der Projektabgabe.");
         applyMobileStyles();
         checkOrientation();
         window.addEventListener('orientationchange', checkOrientation);
     } else {
-        console.log("Die App wird nicht auf einem mobilen Gerät geöffnet.");
+        console.log("Die App wird nicht auf einem mobilen Gerät geöffnet. Dient nur zur übersicht bei der Projektabgabe.");
         applyDesktopStyles();
     }
 });
+
+if (isMobileDevice()) {
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+}
 
 
 

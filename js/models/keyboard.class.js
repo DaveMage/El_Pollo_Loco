@@ -1,3 +1,6 @@
+/**
+ * Class for handling keyboard input.
+ */
 class Keyboard {
     LEFT = false;
     RIGHT = false;
@@ -7,11 +10,16 @@ class Keyboard {
     THROW = false;
     D = false;
 
-
+    /**
+     * Constructor for creating a Keyboard instance.
+     */
     constructor() {
         this.reset();
     }
 
+    /**
+     * Resets all key flags to false.
+     */
     reset() {
         this.LEFT = false;
         this.RIGHT = false;

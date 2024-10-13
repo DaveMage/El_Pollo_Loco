@@ -1,3 +1,6 @@
+/**
+ * Class for the end boss that inherits from MovableObject.
+ */
 class Endboss extends MovableObject {
     height = 300;
     width = 200;
@@ -58,9 +61,13 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
 
+    /**
+     * Constructor for creating an end boss.
+     * @param {object} world - The game world.
+     */
     constructor(world) {
         super().loadImage(this.IMAGES_ALERT[0]);
-        this.world = world; // Speichert die world-Instanz
+        this.world = world; 
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_ATTACK);
@@ -71,6 +78,9 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the end boss by setting up intervals for different animations and movements.
+     */
     animate() {
         let j = 0
         let i = 0

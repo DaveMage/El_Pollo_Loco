@@ -8,7 +8,7 @@ class Character extends MovableObject {
     characterIntervalIds = [];
     idleTimeout = 5000;
     lastActionTime = Date.now();
-    direction = 'right'; // Standard-Blickrichtung
+    direction = 'right'; 
 
     offset = {
         top: 50,
@@ -84,6 +84,10 @@ class Character extends MovableObject {
 
     walking_sound = new Audio('audio/walk.mp3');
     jump_sound = new Audio('audio/jump.mp3');
+
+    /**
+     * Constructor for creating a character.
+     */
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
 
@@ -97,13 +101,16 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the character by setting up intervals for movement and animation.
+     */
     animate() {
 
         let interval1 = setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
                 this.moveRight();
-                this.direction = 'right'; // Blickrichtung aktualisieren
+                this.direction = 'right'; 
                 this.otherDirection = false;
                 this.playWalkingSound();
                 this.resetIdleTimer();
@@ -111,7 +118,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.LEFT && this.x > -620) {
                 this.moveLeft();
-                this.direction = 'left'; // Blickrichtung aktualisieren
+                this.direction = 'left'; 
                 this.otherDirection = true;
                 this.playWalkingSound();
                 this.resetIdleTimer();
@@ -121,10 +128,8 @@ class Character extends MovableObject {
                 this.resetIdleTimer();
             }
 
-
-            // Neue Zeile: Aktualisiere die horizontale Position basierend auf speedX
             this.x += this.speedX;
-            this.reduceSpeedX(); // Neue Zeile: Reduziere speedX allmählich
+            this.reduceSpeedX(); 
 
             this.world.camera_x = 0 - this.x + 100;
         }, 1000 / 60);
@@ -158,16 +163,25 @@ class Character extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Resets the idle timer to the current time.
+     */
     resetIdleTimer() {
         this.lastActionTime = Date.now();
     }
 
+    /**
+     * Makes the character jump by setting the vertical speed.
+     */
     jump() {
         this.speedY = 20;
         this.playJumpSound();
         this.resetIdleTimer();
     }
 
+    /**
+     * Stops the character's actions if the first enemy is defeated.
+     */
     characterStopActing() {
         if (this.world.level.enemies[0].defeat) {
             for (let i = 0; i < this.characterIntervalIds.length; i++) {
@@ -179,24 +193,36 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Clears all intervals and stops the walking sound.
+     */
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
         this.walking_sound.pause();
         this.walking_sound.currentTime = 0;
     }
 
+    /**
+     * Plays the walking sound if not muted.
+     */
     playWalkingSound() {
         if (!mute) {
             this.walking_sound.play();
         }
     }
 
+    /**
+     * Plays the jump sound if not muted.
+     */
     playJumpSound() {
         if (!mute) {
             this.jump_sound.play();
         }
     }
 
+    /**
+     * Reduces the horizontal speed gradually to simulate friction.
+     */
     reduceSpeedX() {
         if (this.speedX > 0) {
             this.speedX -= 1;
