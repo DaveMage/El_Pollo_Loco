@@ -22,6 +22,10 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
+
+            if (this instanceof Character && !this.isAboveGround()) {
+                this.y = 170;
+            }
         }, 1000 / 60);
     }
 
@@ -33,7 +37,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { 
             return true;
         } else {
-            return this.y < 240    
+            return this.y < 165   // hier ändert man wie tief pepe fällt
         }
     }
 
@@ -85,7 +89,7 @@ class MovableObject extends DrawableObject {
      * Reduces the object's energy when it is hit.
      */
     hit() {
-        this.energy -= 5;
+        this.energy -= 26;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

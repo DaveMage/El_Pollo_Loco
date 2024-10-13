@@ -68,7 +68,7 @@ class World {
      * Checks if the character has made first contact with the end boss.
      */
     checkFirstContact() {
-        if (this.character.x > 1600) {
+        if (this.character.x > 50) {  //1000 / 1200
             bossFirstSeen = true;    
         }
     }
@@ -88,15 +88,22 @@ class World {
                 bottle = new ThrowableObject(this.character.x - 20, this.character.y + 20, 'left');
                 this.playThrowSound();
             }
-            this.throwableObjects.push(bottle);
-            this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
-            this.coin_statusbar.setPercentage(this.coin_statusbar.percentage -= 20);
-
-            this.canThrow = false;
+            this.updateBottleStatusBar(bottle);
             setTimeout(() => {
                 this.canThrow = true;
             }, 1000);
         }
+    }
+
+    /**
+     * Updates the bottle status bar by adding a bottle to the throwable objects,
+     * decreasing the bottle and coin status bar percentages, and disabling throwing.
+     */
+    updateBottleStatusBar(bottle) {
+        this.throwableObjects.push(bottle);
+        this.bottle_statusbar.setPercentage(this.bottle_statusbar.percentage -= 20);
+        this.coin_statusbar.setPercentage(this.coin_statusbar.percentage -= 20);
+        this.canThrow = false;
     }
 
     /**
@@ -113,38 +120,59 @@ class World {
      */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
+        this.addBgAndCollectables();
+        this.ctx.translate(-this.camera_x, 0);
+        this.checkEndbossFirstContact();
+        this.addStatusBars();
+        this.checkEndbossDefeat();
+        this.ctx.translate(this.camera_x, 0);
+        this.addToMap(this.character);
+        this.ctx.translate(-this.camera_x, 0);
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw();
+        });
+    }
 
+    /**
+     * Checks if the character has made first contact with the end boss and displays the end boss health bar.
+    */
+    checkEndbossFirstContact() {
+        if (this.character.x > 1600 || this.firstContact) {
+            this.addToMap(this.endboss_healthbar);
+            this.firstContact = true;
+        }
+    }
+
+    /**
+     * Checks if the end boss is defeated and displays the win screen if true.
+     */
+    checkEndbossDefeat() {
+        if (this.level.enemies[0].defeat) {
+            this.addToMap(this.endScreenWin);
+        }
+    }
+
+    /**
+     * Adds the status bars (health, coin, and bottle) to the map.
+    */
+    addStatusBars() {
+        this.addToMap(this.statusBar);
+        this.addToMap(this.coin_statusbar);
+        this.addToMap(this.bottle_statusbar);
+    }
+
+    /**
+    * Adds background objects, collectables, and enemies to the map.
+    */
+    addBgAndCollectables() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-
-        this.ctx.translate(-this.camera_x, 0);
-
-        if (this.character.x > 1600 || this.firstContact) {
-            this.addToMap(this.endboss_healthbar);
-            this.firstContact = true;
-        }
-        this.addToMap(this.statusBar);
-        this.addToMap(this.coin_statusbar);
-        this.addToMap(this.bottle_statusbar);
-        if (this.level.enemies[0].defeat) {
-            this.addToMap(this.endScreenWin);
-        }
-
-        this.ctx.translate(this.camera_x, 0);
-
-        this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x, 0);
-
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
     }
 
     /**
@@ -167,7 +195,7 @@ class World {
             this.flipImage(movableObject);
         }
         movableObject.draw(this.ctx);
-        // movableObject.drawFrame(this.ctx);   Dev tool to show the hitbox
+        movableObject.drawFrame(this.ctx);   // Dev tool to show the hitbox
         if (movableObject.otherDirection) {
             this.flipImageBack(movableObject);
         }

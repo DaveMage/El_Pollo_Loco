@@ -1,18 +1,18 @@
 class Character extends MovableObject {
-    y = 200;
+    y = 50;
     speed = 3;
     speedX = 0;
-    height = 180;
+    height = 250;   // 180
     collectedCoins = 0;
     collectedBottle = 0;
     characterIntervalIds = [];
     idleTimeout = 5000;
     lastActionTime = Date.now();
-    direction = 'right'; 
+    direction = 'right';
 
     offset = {
-        top: 50,
-        bottom: 0,
+        top: 120,
+        bottom: 10,
         left: 20,
         right: 23,
     };
@@ -90,7 +90,6 @@ class Character extends MovableObject {
      */
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
-
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
@@ -105,55 +104,12 @@ class Character extends MovableObject {
      * Animates the character by setting up intervals for movement and animation.
      */
     animate() {
-
         let interval1 = setInterval(() => {
-            this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
-                this.moveRight();
-                this.direction = 'right'; 
-                this.otherDirection = false;
-                this.playWalkingSound();
-                this.resetIdleTimer();
-            }
-
-            if (this.world.keyboard.LEFT && this.x > -620) {
-                this.moveLeft();
-                this.direction = 'left'; 
-                this.otherDirection = true;
-                this.playWalkingSound();
-                this.resetIdleTimer();
-            }
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-                this.resetIdleTimer();
-            }
-
-            this.x += this.speedX;
-            this.reduceSpeedX(); 
-
-            this.world.camera_x = 0 - this.x + 100;
+            this.characterMoveKit();
         }, 1000 / 60);
 
         let interval2 = setInterval(() => {
-
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                showLoseScreen()
-                this.clearAllIntervals()
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                } else if (Date.now() - this.lastActionTime > this.idleTimeout) {
-                    this.playAnimation(this.IMAGES_IDLE_LONG);
-                } else {
-                    this.playAnimation(this.IMAGES_IDLE);
-                }
-            }
+            this.characterCollisionKit();     
         }, 100);
         this.characterIntervalIds.push(interval1);
         this.characterIntervalIds.push(interval2);
@@ -161,6 +117,85 @@ class Character extends MovableObject {
         setInterval(() => {
             this.characterStopActing()
         }, 100);
+    }
+
+    /**
+     * Moves the character to the right and updates relevant properties.
+    */
+    characerMovesRight() {
+        this.moveRight();
+        this.direction = 'right';
+        this.otherDirection = false;
+        this.playWalkingSound();
+        this.resetIdleTimer();
+    }
+
+    /**
+     * Moves the character to the left and updates relevant properties.
+    */
+    characerMovesLeft() {
+        this.moveLeft();
+        this.direction = 'left';
+        this.otherDirection = true;
+        this.playWalkingSound();
+        this.resetIdleTimer();
+    }
+
+    /**
+     * Applies a knockback effect to the character by adjusting its position and speed.
+     */
+    characterKnockBack() {
+        this.x += this.speedX;
+        this.reduceSpeedX();
+        this.world.camera_x = 0 - this.x + 100;
+    }
+
+    /**
+     * Handles the character's movement and actions based on keyboard input.
+    */
+    characterMoveKit() {
+        this.walking_sound.pause();
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.Level_end_x) {
+            this.characerMovesRight();
+        }
+        if (this.world.keyboard.LEFT && this.x > -620) {
+            this.characerMovesLeft();
+        }
+        if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+            this.jump();
+            this.resetIdleTimer();
+        }
+        this.characterKnockBack();
+    }
+
+    /**
+    * Handles the character's collision states and plays the appropriate animations.
+    */
+    characterCollisionKit() {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            showLoseScreen()
+            this.clearAllIntervals()
+        } else if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else {
+            this.characterIdleanimation();
+        }
+    }
+
+    /**
+    * Handles the character's idle animation based on keyboard input and idle time.
+    */
+    characterIdleanimation() {
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else if (Date.now() - this.lastActionTime > this.idleTimeout) {
+            this.playAnimation(this.IMAGES_IDLE_LONG);
+        } else {
+            this.playAnimation(this.IMAGES_IDLE);
+        }
     }
 
     /**

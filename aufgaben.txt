@@ -50,3 +50,13 @@ Feedback
     -kein sterbe bild nach neustart -Done
     -consolenfehler sollten nciht auftreten -Done
     -durch den nextspawn bei coins und bottles werden die münzen bei jedem neustart immer weiter hinten gezeigt. -Done
+
+Feedback No.2
+
+    -Proportion von Pepe passt nicht -Done
+    -Pepe landet nicht immer auf der selben höhe -Done
+    -Boss lässt sich zu einfach Töten -Done
+    -hit detection stimmt nicht richitg. Bei jeder kollision soltle man leben verlieren -Done
+    -try again und hauptmenü knopf -Done
+    -jede funktion nur 14 zeilen lang -Done
+-tablet braucht auch virtuelle knöpfe

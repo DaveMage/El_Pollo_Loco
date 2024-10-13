@@ -82,7 +82,7 @@ class CollisionHandler {
         this.world.level.enemies.forEach((enemy) => {
             if (this.world.character.isColliding(enemy) && !this.collisionDetected) {
                 if (this.isFalling() && this.world.character.isColliding(enemy) && this.world.character.speedY < 0 && !enemy.isDead) {
-                    this.world.character.speedY = 20;
+                    this.world.character.speedY = 15;
                     enemy.die();
                     this.world.character.playJumpSound();                  
                     this.hitTimeout();
@@ -125,7 +125,7 @@ class CollisionHandler {
                     this.hitTimeout(); 
                     setTimeout(() => {
                         enemy.isHit = false;
-                    }, 2000);
+                    }, 500);
                 }
             }
         });

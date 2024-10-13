@@ -150,6 +150,13 @@ function reload() {
     game.classList.remove("dNone");
     let canvas = document.getElementById('canvas');
     canvas.classList.remove("dBlock");
+    reloadChanges();
+}
+
+/**
+ * Reloads the game by resetting various game states and stopping all audio and intervals.
+ */
+function reloadChanges() {
     bossFirstSeen = false;
     stopAudio();
     clearAllIntervals();
@@ -229,6 +236,18 @@ function showLoseScreen() {
 }
 
 /**
+ * Hides all end screens by adding the "dNone" class to them.
+ */
+function closeAllEndScreens() {
+    let endscreen = document.getElementById('endScreenWin');
+    let loseScreen = document.getElementById('endScreenLose');
+    loseScreen.classList.add("dNone");
+    endscreen.classList.add("dNone");
+    winAudio.pause();
+    loseAudio.pause();
+}
+
+/**
  * Lowers the volume of the main theme audio.
  */
 function lowerVolume() {
@@ -256,6 +275,7 @@ function clearAllIntervals() {
 function restart() {
     clearAllIntervals();
     startGame();
+    closeAllEndScreens();
     bossFirstSeen = false;
 }
 

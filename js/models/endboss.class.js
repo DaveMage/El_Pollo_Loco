@@ -67,58 +67,99 @@ class Endboss extends MovableObject {
      */
     constructor(world) {
         super().loadImage(this.IMAGES_ALERT[0]);
-        this.world = world; 
+        this.world = world;
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2200;  
+        this.x = 500;  // 2200
         this.speed = 2.5;
+        this.j = 0;
         this.animate();
     }
 
     /**
-     * Animates the end boss by setting up intervals for different animations and movements.
-     */
+    * Animates the end boss by handling its behavior and movement.
+    */
     animate() {
-        let j = 0
-        let i = 0
-        setInterval(() => {
+        let j = 0;
+        let i = 0;
+        setInterval(() => {            
             if (bossFirstSeen) {
-            if (this.energy > 0) {
-                if (this.isHit) {
-                    this.playAnimation(this.IMAGES_HURT);
-                } else if (i < 10) {
-                    this.playAnimation(this.IMAGES_ALERT);
-                } else if (i > 10 && i < 20) {
-                    this.playAnimation(this.IMAGES_ATTACK);
-                } else if (i > 20 && i < 25) {
-                    this.playAnimation(this.IMAGES_WALK);
-                    this.isWalking = true;
-                } else if (i > 25) {
-                    i = 0;
-                    this.isWalking = false
+                this.handleBossAnimation(i, j);
+                i++;
+                if (i >= 14) {
+                    i = 0; 
                 }
-            } else if (j > 10) {
-                showEndScreen();
-                clearAllIntervals();
-            } else if (j > 2) {
-                this.defeat = true;
-                j++
-            } else {
-                this.playAnimation(this.IMAGES_DEAD);
-                j++
             }
-            i++
-        }
         }, 250);
-
+    
         setInterval(() => {
             if (this.isWalking) {
                 this.moveLeft();
             }
-        }, 1000 / 60);
+        }, 1000 / 100);
     }
-
+    
+    /**
+     * Handles the boss animation based on the current index and energy.
+     * @param {number} i - The current index in the animation sequence.
+     * @param {number} j - The current index in the defeat sequence.
+     */
+    handleBossAnimation(i) {
+        if (this.energy > 0) {
+            this.handleBossEnergy(i);
+        } else {
+            this.handleBossDefeat();
+        }
+    }
+    
+    /**
+     * Handles the boss animation when the boss has energy.
+     * @param {number} i - The current index in the animation sequence.
+     */
+    handleBossEnergy(i) {
+        if (i < 15) {
+            this.playBossAnimation(i);
+        } else {
+            i = 0;
+        }
+    }
+    
+    /**
+     * Plays the appropriate boss animation based on the current index.
+     * @param {number} i - The current index in the animation sequence.
+     */
+    playBossAnimation(i) {
+        if (this.isHit) {
+            this.playAnimation(this.IMAGES_HURT);
+        } else if (i < 3) {
+            this.playAnimation(this.IMAGES_ALERT);
+        } else if (i > 3 && i < 8) {
+            this.playAnimation(this.IMAGES_ATTACK);
+        } else if (i > 8 && i < 12) {
+            this.playAnimation(this.IMAGES_WALK);
+            this.isWalking = true;
+        } else if (i > 12) {
+            i = 0;
+            this.isWalking = false;
+        }
+    }
+    
+    /**
+     * Handles the boss animation when the boss is defeated.
+     */
+    handleBossDefeat() {        
+        if (this.j > 10) {
+            showEndScreen();
+            clearAllIntervals();
+        } else if (this.j > 2) {
+            this.defeat = true;
+            this.j++;
+        } else {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.j++;
+        }
+    }
 }
