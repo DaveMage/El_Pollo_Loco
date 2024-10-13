@@ -150,5 +150,3 @@ class CollisionHandler {
         }, 500); 
     }
 }
-
-

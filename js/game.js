@@ -280,6 +280,14 @@ function restart() {
 }
 
 /**
+ * Checks if the device is a tablet.
+ * @returns {boolean} - True if the device is a tablet.
+ */
+function isTablet() {
+    return /iPad|Android|Tablet/i.test(navigator.userAgent);
+}
+
+/**
  * Checks if the device is a mobile device.
  * @returns {boolean} - True if the device is a mobile device.
  */
@@ -318,26 +326,24 @@ function checkOrientation() {
 }
 
 window.addEventListener('load', () => {
-    if (isMobileDevice()) {
-        console.log("Die App wird auf einem mobilen Gerät geöffnet. Dient nur zur übersicht bei der Projektabgabe.");
+    if (isMobileDevice() || isTablet()) {
         applyMobileStyles();
         checkOrientation();
         window.addEventListener('orientationchange', checkOrientation);
     } else {
-        console.log("Die App wird nicht auf einem mobilen Gerät geöffnet. Dient nur zur übersicht bei der Projektabgabe.");
         applyDesktopStyles();
     }
 });
 
-if (isMobileDevice()) {
+if (isMobileDevice() || isTablet()) {
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
     });
 }
 
-
-
-
-
-
-
+if (isTablet()) {   
+    let btnLeft = document.getElementById('mobileBtnLeft');
+    let btnRight = document.getElementById('mobileBtnRight');
+    btnLeft.classList.add('dBlock');
+    btnRight.classList.add('dBlock');
+}

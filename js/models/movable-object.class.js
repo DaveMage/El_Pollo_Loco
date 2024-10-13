@@ -22,7 +22,6 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-
             if (this instanceof Character && !this.isAboveGround()) {
                 this.y = 170;
             }
@@ -147,24 +146,3 @@ class MovableObject extends DrawableObject {
         this.nextSpawn += baseValue - Math.random() * randomRange;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

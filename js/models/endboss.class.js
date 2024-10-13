@@ -14,9 +14,9 @@ class Endboss extends MovableObject {
     defeat = false;
 
     offset = {
-        top: -100,
+        top: 70,
         bottom: 0,
-        left: 0,
+        left: 30,
         right: 0,
     };
 
@@ -73,7 +73,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 500;  // 2200
+        this.x = 2100;  
         this.speed = 2.5;
         this.j = 0;
         this.animate();

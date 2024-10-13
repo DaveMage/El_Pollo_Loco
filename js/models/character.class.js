@@ -2,7 +2,7 @@ class Character extends MovableObject {
     y = 50;
     speed = 3;
     speedX = 0;
-    height = 250;   // 180
+    height = 250;   
     collectedCoins = 0;
     collectedBottle = 0;
     characterIntervalIds = [];
@@ -269,6 +269,3 @@ class Character extends MovableObject {
         }
     }
 }
-
-
-
