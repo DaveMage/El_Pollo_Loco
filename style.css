@@ -199,18 +199,14 @@ h2 {
 .lowerGameControls {
     display: inline-flex;
     align-items: center;
-    /* Zentriert das Bild vertikal mit dem Text */
 }
 
 .lowerGameControls .icon {
     border: 3px solid #000000;
     border-radius: 5px;
     width: 50px;
-    /* Passt die Bildbreite an */
     height: auto;
-    /* Beibehaltung des Seitenverhältnisses */
     margin-right: 5px;
-    /* Fügt einen kleinen Abstand zwischen Bild und Text hinzu */
 }
 
 .lowerGameControls .iconLetter {
@@ -274,6 +270,14 @@ canvas {
     display: none;
 }
 
+/* Canvas-Stile für mobile Geräte */
+@media only screen and (max-width: 768px) {
+    canvas {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
 /* mobile */
 
 .mobile-nav-button {
@@ -335,52 +339,6 @@ canvas {
     src: url(./fonts/Roboto-Regular.ttf);
 }
 
-/* @media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-        width: 100vw;
-    }
-
-    h1 {
-        display: none;
-    }
-
-    .lowerGameSection {
-        display: none;
-    }
-
-    .startImage {
-        height: 100vh;
-    }
-
-    .startScreenLayer {
-        height: 100vh;
-    }
-
-    .mainScreen {
-        height: 100vh;
-        width: auto;
-    }
-
-    body {
-        background-image: none;
-        height: 100vh;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-    }
-
-    .menuBtnBar {
-        top: 84vh;
-    }
-} */
-
 @media only screen and (max-width: 660px) {
     .Priv-Poli-H2 {
         padding-left: 50px;
@@ -407,55 +365,96 @@ canvas {
     }
 }
 
-/* @media only screen and (orientation: portrait) and (max-width: 1030px) {
-    .landscape-warning {
-        display: flex;
-    }
-} */
 
-/* @media only screen and (orientation: landscape) and (min-width: 950px) {
-    .mobile-nav-button {
-        display: block;
-    }
-} */
+/* Mobile Stile */
+body.mobile {
+    overflow: hidden; /* Verhindert Scrollbalken im mobilen Modus */
+}
 
-/* @media screen and (max-width: 719px) {
+body.mobile .mainScreen {
+    width: 100vw;
+    height: 100vh; /* Passt die Höhe an die Bildschirmhöhe an */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Zentriert den Inhalt vertikal */
+    align-items: center; /* Zentriert den Inhalt horizontal */
+    overflow: hidden; /* Verhindert Scrollbalken innerhalb des Containers */
+}
 
+body.mobile .menuBtnBar {
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    width: 95vw;
+    position: absolute;
+    top: 85%; /* Positioniert die Knöpfe am unteren Rand */
+}
 
-    .menuBtnBar {
-        width: inherit;
-        display: flex;
-        justify-content: space-between;
-        margin: 0;
-        width: 95vw;
-    }
+body.mobile .menuBtn {
+    margin-right: 8px;
+}
 
-    .menuBtn {
-        margin-right: 8px;
-    }
+body.mobile .startImage {
+    width: 100vw;
+    height: auto; /* Beibehaltung des Seitenverhältnisses */
+}
 
-    .startImage {
-        width: 100vw;
-    }
+body.mobile .startScreenLayer {
+    width: 100vw;
+    height: 100vh; /* Passt die Höhe an die Bildschirmhöhe an */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Zentriert den Inhalt vertikal */
+    align-items: center; /* Zentriert den Inhalt horizontal */
+}
 
-    .startScreenLayer {
-        width: 100vw;
-    }
-} */
+body.mobile .lowerGameSection {
+    display: none;
+}
 
-/* @media (min-width: 720px) { /* 720px und mehr werden knöpfe ausgeschaltet
-    .mobile-nav-button {
-        display: none;
-    }
-} */
+body.mobile .mobile-nav-button {
+    display: block;
+}
 
+body.mobile canvas {
+    width: 100vw;
+    height: 100vh;
+}
 
-/* hiermit entferne ich den footer ausm handy bereich */
-@media only screen and (orientation: landscape) {   
-    .lowerGameSection {
-        display: none;
-    }
+body.mobile .endScreenLayer {
+    width: 100vw;
+    height: 100vh;
+}
+
+body.mobile .MainMenuBtn {
+    top: 75%;
+}
+
+body.mobile .endScreenImgLose {
+    width: 100vw;
+    height: 100vh;
 }
 
 
+
+
+/* Desktop Stile */
+body.desktop .mainScreen {
+    width: 720px;
+    height: 480px;
+}
+
+body.desktop .menuBtnBar {
+    margin-left: 460px;
+    position: absolute;
+    z-index: 1;
+    top: 416px;
+}
+
+body.desktop .lowerGameSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 

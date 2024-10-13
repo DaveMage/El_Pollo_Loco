@@ -212,21 +212,44 @@ function restart() {
     bossFirstSeen = false;
 }
 
-// function checkOrientation() {
-//     const warning = document.getElementById('landscapeWarning');
-//     if (window.innerWidth < 720) {
-//         warning.classList.add('active');
-//     } else {
-//         warning.classList.remove('active');
-//     }
-// }
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
 
-// window.addEventListener('resize', checkOrientation);
-// window.addEventListener('load', checkOrientation);
+function applyMobileStyles() {
+    document.body.classList.add('mobile');
+    document.body.classList.remove('desktop');
+}
 
+function applyDesktopStyles() {
+    document.body.classList.add('desktop');
+    document.body.classList.remove('mobile');
+}
 
+function checkOrientation() {
+    const landscapeWarning = document.querySelector('.landscape-warning');
+    if (landscapeWarning) {
+        if (window.orientation === 0 || window.orientation === 180) {
+            // Hochformat (Portrait)
+            landscapeWarning.classList.add('active');
+        } else {
+            // Querformat (Landscape)
+            landscapeWarning.classList.remove('active');
+        }
+    }
+}
 
-
+window.addEventListener('load', () => {
+    if (isMobileDevice()) {
+        console.log("Die App wird auf einem mobilen Gerät geöffnet.");
+        applyMobileStyles();
+        checkOrientation();
+        window.addEventListener('orientationchange', checkOrientation);
+    } else {
+        console.log("Die App wird nicht auf einem mobilen Gerät geöffnet.");
+        applyDesktopStyles();
+    }
+});
 
 
 

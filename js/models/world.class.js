@@ -59,7 +59,7 @@ class World {
     }
 
     checkFirstContact() {
-        if (this.character.x > 2000) {
+        if (this.character.x > 1600) {
             bossFirstSeen = true;    
         }
         console.log('Boss first seen is', bossFirstSeen);
@@ -108,7 +108,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        if (this.character.x > 2000 || this.firstContact) {
+        if (this.character.x > 1600 || this.firstContact) {
             this.addToMap(this.endboss_healthbar);
             this.firstContact = true;
         }
