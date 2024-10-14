@@ -87,22 +87,6 @@ function activateTouchBtn() {
     document.getElementById('btnRight').addEventListener('touchend', () => {
         keyboard.RIGHT = false;
     });
-
-    document.getElementById('btnThrow').addEventListener('touchstart', () => {
-        keyboard.D = true;
-    });
-
-    document.getElementById('btnThrow').addEventListener('touchend', () => {
-        keyboard.D = false;
-    });
-
-    document.getElementById('btnJump').addEventListener('touchstart', () => {
-        keyboard.SPACE = true;
-    });
-
-    document.getElementById('btnJump').addEventListener('touchend', () => {
-        keyboard.SPACE = false;
-    });
 }
 
 /**
@@ -346,4 +330,16 @@ if (isTablet()) {
     let btnRight = document.getElementById('mobileBtnRight');
     btnLeft.classList.add('dBlock');
     btnRight.classList.add('dBlock');
+}
+
+// Globale Funktion für den mobilen Knopf
+function mobileThrow() {
+    if (world.canThrow && world.bottle_statusbar.percentage > 0 && world.coin_statusbar.percentage > 0) {
+        world.throwBottle();
+    }
+}
+
+// Globale Funktion für den mobilen Knopf
+function mobileJump() {
+    world.character.mobileJump();
 }

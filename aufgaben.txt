@@ -70,3 +70,7 @@ Feedback No.3
     - tablet geht noch nicht richtig -Done er erkennt nicht alle tablets im browser und behandelt sie als desktop.
     - resolve img index für alle statusbars -Done
     - dev toll raus -Done
+
+Feedback No.4
+
+    -bnt für wurf und springen geändert auf funktionsaufruf -Done

@@ -2,7 +2,7 @@ class Character extends MovableObject {
     y = 50;
     speed = 3;
     speedX = 0;
-    height = 250;   
+    height = 250;
     collectedCoins = 0;
     collectedBottle = 0;
     characterIntervalIds = [];
@@ -109,7 +109,7 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         let interval2 = setInterval(() => {
-            this.characterCollisionKit();     
+            this.characterCollisionKit();
         }, 100);
         this.characterIntervalIds.push(interval1);
         this.characterIntervalIds.push(interval2);
@@ -266,6 +266,15 @@ class Character extends MovableObject {
         }
         if (Math.abs(this.speedX) < 1) {
             this.speedX = 0;
+        }
+    }
+
+    /**
+     * Handles the jump action for mobile controls.
+     */
+    mobileJump() {
+        if (!this.isAboveGround()) {
+            this.jump();
         }
     }
 }

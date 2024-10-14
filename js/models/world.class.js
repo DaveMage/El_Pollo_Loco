@@ -29,8 +29,8 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.collisionHandler = new CollisionHandler(this);       
-        this.character.world = this; 
+        this.collisionHandler = new CollisionHandler(this);
+        this.character.world = this;
         this.draw();
         this.setWorld();
         this.run();
@@ -67,32 +67,39 @@ class World {
     /**
      * Checks if the character has made first contact with the end boss.
      */
-    checkFirstContact() {        
-        if (this.character.x > 1200) {  
-            bossFirstSeen = true;    
+    checkFirstContact() {
+        if (this.character.x > 1200) {
+            bossFirstSeen = true;
         }
     }
 
     /**
-     * Checks if the character can throw objects and handles the throwing logic.
-     */
+    * Checks if the character can throw objects and handles the throwing logic.
+    */
     checkThrowObjects() {
         if (!this.canThrow) return;
 
         if (this.keyboard.D && this.bottle_statusbar.percentage > 0 && this.coin_statusbar.percentage > 0) {
-            let bottle;
-            if (this.character.direction === 'right') {
-                bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20, 'right');
-                this.playThrowSound();
-            } else {
-                bottle = new ThrowableObject(this.character.x - 20, this.character.y + 20, 'left');
-                this.playThrowSound();
-            }
-            this.updateBottleStatusBar(bottle);
-            setTimeout(() => {
-                this.canThrow = true;
-            }, 1000);
+            this.throwBottle();
         }
+    }
+
+    /**
+     * Handles the logic for throwing a bottle.
+     */
+    throwBottle() {
+        let bottle;
+        if (this.character.direction === 'right') {
+            bottle = new ThrowableObject(this.character.x + 20, this.character.y + 20, 'right');
+        } else {
+            bottle = new ThrowableObject(this.character.x - 20, this.character.y + 20, 'left');
+        }
+        this.playThrowSound();
+        this.updateBottleStatusBar(bottle);
+        this.canThrow = false;
+        setTimeout(() => {
+            this.canThrow = true;
+        }, 1000);
     }
 
     /**
@@ -139,7 +146,7 @@ class World {
      * Checks if the character has made first contact with the end boss and displays the end boss health bar.
     */
     checkEndbossFirstContact() {
-        if (this.character.x > 1200 || this.firstContact) { 
+        if (this.character.x > 1200 || this.firstContact) {
             this.addToMap(this.endboss_healthbar);
             this.firstContact = true;
         }
