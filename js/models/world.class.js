@@ -67,8 +67,8 @@ class World {
     /**
      * Checks if the character has made first contact with the end boss.
      */
-    checkFirstContact() {
-        if (this.character.x > 1000) { 
+    checkFirstContact() {        
+        if (this.character.x > 1200) {  
             bossFirstSeen = true;    
         }
     }
@@ -139,7 +139,7 @@ class World {
      * Checks if the character has made first contact with the end boss and displays the end boss health bar.
     */
     checkEndbossFirstContact() {
-        if (this.character.x > 1500 || this.firstContact) {
+        if (this.character.x > 1200 || this.firstContact) { 
             this.addToMap(this.endboss_healthbar);
             this.firstContact = true;
         }
@@ -195,7 +195,6 @@ class World {
             this.flipImage(movableObject);
         }
         movableObject.draw(this.ctx);
-        // movableObject.drawFrame(this.ctx);   // Dev tool to show the hitbox
         if (movableObject.otherDirection) {
             this.flipImageBack(movableObject);
         }

@@ -46,13 +46,24 @@ class DrawableObject {
         });
     }
 
-    // drawFrame(ctx) {    // dev tool to show the hitbox
-    //     if (this instanceof ThrowableObject || this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || this instanceof Coins || this instanceof Bottle || this instanceof Endboss) {
-    //         ctx.beginPath();
-    //         ctx.lineWidth = '5';
-    //         ctx.strokeStyle = 'blue';
-    //         ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
-    //         ctx.stroke();
-    //     }
-    // }
+    /**
+     * Determines the index of the image based on the current percentage.
+     * @returns {number} - The index of the image in the Statusbar array.
+     */
+        resolveImageIndex() {
+
+            if (this.percentage == 100) {
+                return 5;
+            } else if (this.percentage >= 80) {
+                return 4;
+            } else if (this.percentage >= 60) {
+                return 3;
+            } else if (this.percentage >= 40) {
+                return 2;
+            } else if (this.percentage >= 20) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
 }

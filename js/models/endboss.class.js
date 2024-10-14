@@ -73,7 +73,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2100;  
+        this.x = 2100;      
         this.speed = 2.5;
         this.j = 0;
         this.animate();
@@ -99,7 +99,7 @@ class Endboss extends MovableObject {
             if (this.isWalking) {
                 this.moveLeft();
             }
-        }, 1000 / 100);
+        }, 1000 / 170);
     }
     
     /**
@@ -156,6 +156,7 @@ class Endboss extends MovableObject {
             clearAllIntervals();
         } else if (this.j > 2) {
             this.defeat = true;
+            this.isWalking = false;
             this.j++;
         } else {
             this.playAnimation(this.IMAGES_DEAD);

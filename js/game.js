@@ -284,7 +284,7 @@ function restart() {
  * @returns {boolean} - True if the device is a tablet.
  */
 function isTablet() {
-    return /iPad|Android|Tablet/i.test(navigator.userAgent);
+    return /iPad|Android(?!.*Mobile)|Tablet|PlayBook|Silk|Windows.*Touch|Macintosh.*(Mac OS X.*Version.*\d{2}_\d{1,2}_\d{1,2}).*Safari/i.test(navigator.userAgent) && !/Mobi|Mobile/i.test(navigator.userAgent);
 }
 
 /**
