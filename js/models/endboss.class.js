@@ -12,6 +12,7 @@ class Endboss extends MovableObject {
     isWalking = false;
     isDead = false;
     defeat = false;
+    collisionEnabled = true;
 
     offset = {
         top: 70,
@@ -73,7 +74,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2100;      
+        this.x = 2100;
         this.speed = 2.5;
         this.j = 0;
         this.animate();
@@ -85,23 +86,23 @@ class Endboss extends MovableObject {
     animate() {
         let j = 0;
         let i = 0;
-        setInterval(() => {            
+        setInterval(() => {
             if (bossFirstSeen) {
                 this.handleBossAnimation(i, j);
                 i++;
                 if (i >= 14) {
-                    i = 0; 
+                    i = 0;
                 }
             }
         }, 250);
-    
+
         setInterval(() => {
             if (this.isWalking) {
                 this.moveLeft();
             }
-        }, 1000 / 170);
+        }, 1000 / 150);
     }
-    
+
     /**
      * Handles the boss animation based on the current index and energy.
      * @param {number} i - The current index in the animation sequence.
@@ -114,7 +115,7 @@ class Endboss extends MovableObject {
             this.handleBossDefeat();
         }
     }
-    
+
     /**
      * Handles the boss animation when the boss has energy.
      * @param {number} i - The current index in the animation sequence.
@@ -126,7 +127,7 @@ class Endboss extends MovableObject {
             i = 0;
         }
     }
-    
+
     /**
      * Plays the appropriate boss animation based on the current index.
      * @param {number} i - The current index in the animation sequence.
@@ -146,21 +147,41 @@ class Endboss extends MovableObject {
             this.isWalking = false;
         }
     }
-    
+
     /**
      * Handles the boss animation when the boss is defeated.
      */
-    handleBossDefeat() {        
+    handleBossDefeat() {
         if (this.j > 10) {
             showEndScreen();
             clearAllIntervals();
         } else if (this.j > 2) {
             this.defeat = true;
             this.isWalking = false;
+            this.disableCollision();
             this.j++;
         } else {
             this.playAnimation(this.IMAGES_DEAD);
+            this.isWalking = false; 
+            this.disableCollision(); 
             this.j++;
         }
+    }
+
+    /**
+     * Disables collision for the end boss.
+     */
+    disableCollision() {
+        this.collisionEnabled = false;
+    }
+
+    /**
+    * Checks if the end boss is colliding with another object.
+    * @param {object} obj - The object to check collision with.
+    * @returns {boolean} - True if colliding, false otherwise.
+    */
+    isColliding(obj) {
+        if (!this.collisionEnabled) return false; // No collision if disabled
+        return super.isColliding(obj);
     }
 }
