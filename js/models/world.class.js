@@ -19,6 +19,7 @@ class World {
     collisionHandler;
     canThrow = true;
     firstContact = false;
+    isNoCoinsMessageVisible = false;
 
     /**
      * Constructor for creating the game world.
@@ -79,8 +80,12 @@ class World {
     checkThrowObjects() {
         if (!this.canThrow) return;
 
-        if (this.keyboard.D && this.bottle_statusbar.percentage > 0 && this.coin_statusbar.percentage > 0) {
-            this.throwBottle();
+        if (this.keyboard.D && this.bottle_statusbar.percentage > 0) {
+            if (this.coin_statusbar.percentage > 0) {
+                this.throwBottle();
+            } else {
+                this.showNoCoinsMessage();
+            }
         }
     }
 
@@ -225,5 +230,20 @@ class World {
     flipImageBack(movableObject) {
         movableObject.x = movableObject.x * -1;
         this.ctx.restore();
+    }
+
+    /**
+     * Shows a message indicating that there are no coins left.
+     */
+    showNoCoinsMessage() {
+        if (this.isNoCoinsMessageVisible) return;
+
+        this.isNoCoinsMessageVisible = true;
+        const messageElement = document.getElementById('noCoinsMessage');
+        messageElement.classList.remove('dNone');
+        setTimeout(() => {
+            messageElement.classList.add('dNone');
+            this.isNoCoinsMessageVisible = false;
+        }, 2000);
     }
 }

@@ -300,6 +300,20 @@ canvas {
     transform: scale(1.1);
 }
 
+.message {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    font-size: 32px;
+}
+
 .Priv-Poli-H1 {
     font-size: 80px;
     letter-spacing: 2px;

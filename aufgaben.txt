@@ -74,3 +74,7 @@ Feedback No.3
 Feedback No.4
 
     -bnt für wurf und springen geändert auf funktionsaufruf -Done
+
+Feedback no.5
+
+    -nicht ersichtlich das man münzen zum werfen braucht -Done
